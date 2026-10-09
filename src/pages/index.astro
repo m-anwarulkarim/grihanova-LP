@@ -2683,10 +2683,10 @@ details p {
           phone_no: phone,
           shipping_address: address,
           division: division,
-          product_id: "6a9da52a7bde5730815c6ffc", // Placeholder ID for Magic Foam
+          product_id: "6a9d00910bd7e968040beba7", // Magic Foam Product ID
           quantity: qty,
           deliveryCharge: deliveryCharge,
-          note: "Variant: " + selectedVariant
+          note: "Magic Foam Variant: " + selectedVariant
         };
 
         const response = await fetch('/api/place-order', {
@@ -2720,7 +2720,8 @@ details p {
             modalWaBtn.href = `https://wa.me/8801790081623?text=${waText}`;
           }
 
-          if (modal) modal.classList.add('open');
+          // Redirect to Thank You page
+          window.location.href = "/success-order?orderId=" + orderId;
         } else {
           alert('দুঃখিত, অর্ডার প্লেস করতে সমস্যা হয়েছে। দয়া করে আবার চেষ্টা করুন।');
         }
