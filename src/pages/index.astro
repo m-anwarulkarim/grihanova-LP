@@ -1749,6 +1749,42 @@ details p {
     font-size: 14.5px;
   }
 }
+/* Custom Toast Notifications */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 99999;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  pointer-events: none;
+}
+.toast-message {
+  background: #ffffff;
+  color: #1f2937;
+  padding: 12px 20px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,0.15), 0 0 0 1px rgba(0,0,0,0.05);
+  font-family: var(--font-body);
+  font-size: 14.5px;
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  opacity: 0;
+  transform: translateY(-20px) scale(0.95);
+  transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+.toast-message.show {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+.toast-error i { color: #ef4444; font-size: 18px; }
+.toast-success i { color: #10b981; font-size: 18px; }
+.toast-error { border-left: 4px solid #ef4444; }
+.toast-success { border-left: 4px solid #10b981; }
 
     </style>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
@@ -2387,6 +2423,9 @@ details p {
     </div>
   </div>
 
+  <!-- Toast Container -->
+  <div id="toast-container" class="toast-container"></div>
+
   <!-- Floating Action Buttons (Animated WhatsApp & Sticky Order Now) -->
   <div class="floating-actions-container">
     <a href="https://wa.me/8801790-081623?text=%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A6%85%E0%A6%B0%E0%A6%BF%E0%A6%B2%E0%A6%BF%E0%A6%AF%E0%A6%BE%20%E0%A6%95%E0%A6%B8%E0%A6%AE%E0%A7%87%E0%A6%9F%E0%A6%BF%E0%A6%95%E0%A6%B8%20%E0%A6%B8%E0%A6%AE%E0%A7%8D%E0%A6%AA%E0%A6%B0%E0%A7%8D%E0%A6%95%E0%A7%87%20%E0%A6%9C%E0%A6%BE%E0%A6%A8%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87" target="_blank" rel="noopener" class="floating-wa-btn" aria-label="WhatsApp Support">
@@ -2394,16 +2433,59 @@ details p {
       <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <a href="#orderSection" class="floating-order-btn">
+    <button type="button" id="floating-submit-btn" class="floating-order-btn" style="border:none; cursor:pointer; font-family:inherit;">
       <i class="fa-solid fa-cart-shopping"></i>
       <span>অর্ডার করুন</span>
-    </a>
+    </button>
   </div>
 
   
 
     <script is:inline>
+        // Custom Toast Function
+        function showToast(message, type = 'error') {
+          const container = document.getElementById('toast-container');
+          if (!container) return;
+          
+          const toast = document.createElement('div');
+          toast.className = `toast-message toast-${type}`;
+          
+          let icon = '<i class="fa-solid fa-circle-exclamation"></i>';
+          if (type === 'success') icon = '<i class="fa-solid fa-circle-check"></i>';
+          
+          toast.innerHTML = `${icon} <span>${message}</span>`;
+          
+          container.appendChild(toast);
+          
+          // Trigger animation
+          setTimeout(() => toast.classList.add('show'), 10);
+          
+          // Remove after 3.5 seconds
+          setTimeout(() => {
+            toast.classList.remove('show');
+            setTimeout(() => toast.remove(), 300);
+          }, 3500);
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
+
+  // Floating button submit logic
+  const floatingSubmitBtn = document.getElementById('floating-submit-btn');
+  const orderForm = document.getElementById('checkout-form');
+  if (floatingSubmitBtn && orderForm) {
+    floatingSubmitBtn.addEventListener('click', () => {
+      // Check if user is already at the form, if not scroll to it smoothly
+      const formRect = orderForm.getBoundingClientRect();
+      if (formRect.top > window.innerHeight || formRect.bottom < 0) {
+        orderForm.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        // After scrolling, try to submit
+        setTimeout(() => { orderForm.requestSubmit(); }, 500);
+      } else {
+        // Form is visible, just submit
+        orderForm.requestSubmit();
+      }
+    });
+  }
 
   // 1. Mini Countdown Timer (Format: 05h : 24m : 18s)
   let duration = (5 * 3600) + (24 * 60) + 18;
@@ -2723,11 +2805,11 @@ details p {
           // Redirect to Thank You page
           window.location.href = "/success-order?orderId=" + orderId;
         } else {
-          alert('দুঃখিত, অর্ডার প্লেস করতে সমস্যা হয়েছে। দয়া করে আবার চেষ্টা করুন।');
+          showToast(result.message || 'দুঃখিত, অর্ডার প্লেস করতে সমস্যা হয়েছে। দয়া করে আবার চেষ্টা করুন।', 'error');
         }
       } catch (error) {
         console.error("Order error", error);
-        alert('নেটওয়ার্ক সমস্যা। দয়া করে আবার চেষ্টা করুন।');
+        showToast('নেটওয়ার্ক সমস্যা। দয়া করে আবার চেষ্টা করুন।', 'error');
       } finally {
         submitBtn.disabled = false;
         submitBtn.innerHTML = originalBtnText;
