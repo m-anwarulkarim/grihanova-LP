@@ -75,7 +75,7 @@ const tiers: Tier[] = [
   { pieces: 25, price: 390, freebies: ["ভেলক্রো ব্যান্ড 10 পিস"], image: tapFilterPackageImages[0], alt: "২৫ পিস Premium water faucet filter প্যাকেজ", productId: "6a9955125f81c2adfbdc51d3" },
   { pieces: 50, price: 650, freebies: ["ভেলক্রো ব্যান্ড 20 পিস"], image: tapFilterPackageImages[1], alt: "৫০ পিস Premium water faucet filter প্যাকেজ", productId: "6a9954a85f81c2adfbdc4570" },
   { pieces: 100, price: 880, freebies: ["ভেলক্রো ব্যান্ড ৪০ পিস"], badge: "সবচেয়ে জনপ্রিয়", highlight: true, ribbon: "BEST VALUE", image: tapFilterPackageImages[2], alt: "১০০ পিস Premium water faucet filter বেস্ট ভ্যালু কম্বো", productId: "6a9954a35f81c2adfbdc44dc" },
-  { pieces: 200, price: 1180, freebies: ["ভেলক্রো ব্যান্ড ৮০ পিস"], badge: "COMBO", image: tapFilterPackageImages[3], alt: "২০০ পিস Premium water faucet filter কম্বো", productId: "6ac9351273ed2fc508918236" },
+  { pieces: 200, price: 1180, freebies: ["ভেলক্রো ব্যান্ড ৮০ পিস"], badge: "COMBO", image: tapFilterPackageImages[3], alt: "২০০ পিস Premium water faucet filter কম্বো", productId: "6a6f7b716841324a31ccb46b" },
 ];
 
 
