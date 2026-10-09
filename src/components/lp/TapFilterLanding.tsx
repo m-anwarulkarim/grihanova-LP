@@ -646,7 +646,7 @@ export default function TapFilterLanding() {
             style={{ left: `${(i * 7 + 5) % 100}%`, animationDuration: `${3 + (i % 5)}s`, animationDelay: `${(i % 6) * 0.4}s` }}
           />
         ))}
-        <div className="relative max-w-6xl mx-auto px-4 grid md:grid-cols-2 gap-10 items-center">
+        <div className="relative max-w-6xl mx-auto px-4 flex flex-col-reverse md:grid md:grid-cols-2 gap-8 md:gap-10 items-center">
           <div>
             <span className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-400 text-white shadow-lg px-4 py-1.5 rounded-full text-[13px] font-bold tracking-wide">
               <Sparkles className="w-4 h-4" /> আল্ট্রা-প্রিমিয়াম কালেকশন
@@ -666,17 +666,17 @@ export default function TapFilterLanding() {
                 </div>
               ))}
             </div>
-            <button type="button" onClick={() => scrollToForm()} className="tf-cta tf-pulse mt-7 inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-base">
+            <button type="button" onClick={() => scrollToForm()} className="tf-cta tf-pulse mt-7 inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-base w-full justify-center md:w-auto">
               <Flame className="w-5 h-5" /> এখনই অর্ডার করুন
             </button>
           </div>
 
-          <div className="relative flex items-center justify-center">
+          <div className="relative flex items-center justify-center w-full mt-4 md:mt-0">
             <div className="relative w-full max-w-[280px] md:max-w-xs">
               <div className="absolute -inset-4 rounded-3xl bg-white/10 blur-2xl" aria-hidden />
               <div className="relative w-full rounded-2xl overflow-hidden ring-1 ring-white/30 shadow-2xl bg-black" style={{ aspectRatio: "9 / 16" }}>
                 <iframe
-                  src="https://www.youtube.com/embed/3tqlGvIhxpA?rel=0&modestbranding=1&playsinline=1&autoplay=1&mute=1&loop=1&playlist=3tqlGvIhxpA&controls=1"
+                  src="https://www.youtube.com/embed/3tqlGvIhxpA?rel=0&modestbranding=1&playsinline=1&autoplay=1&mute=0&loop=1&playlist=3tqlGvIhxpA&controls=1"
                   title="Water faucet tap filter — লাইভ ডেমো"
                   loading="eager"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
