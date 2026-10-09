@@ -24,11 +24,11 @@ type Tier = {
 };
 
 const tiers: Tier[] = [
-  { id: "10pcs", pieces: 10, price: 290, oldPrice: 400, label: "১০ পিস প্যাক" },
-  { id: "20pcs", pieces: 20, price: 450, oldPrice: 600, label: "২০ পিস প্যাক" },
-  { id: "30pcs", pieces: 30, price: 590, oldPrice: 800, label: "৩০ পিস প্যাক" },
-  { id: "50pcs", pieces: 50, price: 890, oldPrice: 1200, label: "৫০ পিস প্যাক", badge: "হট ডিল" },
-  { id: "100pcs", pieces: 100, price: 1490, oldPrice: 2000, label: "১০০ পিস প্যাক", badge: "সুপার সেভার" },
+  { id: "10pcs", pieces: 10, price: 450, oldPrice: 600, label: "১০ পিস প্যাক" },
+  { id: "20pcs", pieces: 20, price: 720, oldPrice: 900, label: "২০ পিস প্যাক" },
+  { id: "30pcs", pieces: 30, price: 950, oldPrice: 1200, label: "৩০ পিস প্যাক" },
+  { id: "50pcs", pieces: 50, price: 1350, oldPrice: 1800, label: "৫০ পিস প্যাক", badge: "হট ডিল" },
+  { id: "100pcs", pieces: 100, price: 1950, oldPrice: 2500, label: "১০০ পিস প্যাক", badge: "সুপার সেভার" },
 ];
 
 export default function MagicFoamLanding() {
