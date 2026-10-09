@@ -2659,12 +2659,28 @@ details p {
 
     calculateOrderTotal();
     
-    if (isManual && typeof window.trackEvent === 'function') {
-      window.trackEvent('AddToCart', { content_name: prodName, currency: 'BDT' });
+    if (isManual) {
+      triggerAddToCart(prodName, 0);
     }
     
     focusNameInput();
   };
+
+  let addedToCart = false;
+  const triggerAddToCart = (itemName, price) => {
+    if (!addedToCart && typeof window.trackEvent === 'function') {
+      const p = price || parseInt(document.getElementById('summary-prod-price')?.textContent) || 0;
+      window.trackEvent('AddToCart', { content_name: itemName || 'Magic Foam Sponge', currency: 'BDT', value: p });
+      addedToCart = true;
+    }
+  };
+
+  // Bind Order Now buttons to AddToCart
+  document.querySelectorAll('.btn-order-honey, .floating-order-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      triggerAddToCart('Magic Foam Sponge', 0);
+    });
+  });
 
   // 4. Quantity Controls & Delivery Calculation
   const qtyInput = document.getElementById('qty-input');
