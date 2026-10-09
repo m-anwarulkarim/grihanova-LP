@@ -27,8 +27,8 @@ type Tier = {
 const tiers: Tier[] = [
   { id: "10pcs", pieces: 10, price: 450, oldPrice: 600, label: "১০ পিস প্যাক", productId: "6a9d00910bd7e968040beba7" },
   { id: "20pcs", pieces: 20, price: 720, oldPrice: 900, label: "২০ পিস প্যাক", productId: "6a6f52536841324a31c8530e" },
-  { id: "30pcs", pieces: 30, price: 950, oldPrice: 1200, label: "৩০ পিস প্যাক", productId: "6a9d00910bd7e968040beba7" }, // 30 pcs not provided, using 10 pcs as fallback
-  { id: "50pcs", pieces: 50, price: 1350, oldPrice: 1800, label: "৫০ পিস প্যাক", badge: "হট ডিল", productId: "6a6f51bb6841324a31c844df" },
+  { id: "30pcs", pieces: 30, price: 950, oldPrice: 1200, label: "৩০ পিস প্যাক", productId: "6a6f51bb6841324a31c844df" },
+  { id: "50pcs", pieces: 50, price: 1350, oldPrice: 1800, label: "৫০ পিস প্যাক", badge: "হট ডিল", productId: "6a6f51346841324a31c83307" },
   { id: "100pcs", pieces: 100, price: 1950, oldPrice: 2500, label: "১০০ পিস প্যাক", badge: "সুপার সেভার", productId: "6a6f500b6841324a31c808d5" },
 ];
 
