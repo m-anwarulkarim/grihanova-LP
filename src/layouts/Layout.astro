@@ -5,6 +5,7 @@ interface Props {
 
 const { title } = Astro.props;
 import '../styles/global.css';
+import Tracking from '../components/Tracking.astro';
 ---
 
 <!doctype html>
@@ -16,6 +17,7 @@ import '../styles/global.css';
 		<title>{title}</title>
 		<link rel="icon" type="image/jpeg" href="/favicon.jpg" />
 		<link rel="shortcut icon" href="/favicon.jpg" />
+		<Tracking />
 	</head>
 	<body class="bg-slate-50 text-slate-900 font-sans min-h-screen">
 		<slot />

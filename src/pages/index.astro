@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import Tracking from '../components/Tracking.astro';
 ---
 
 <!DOCTYPE html>
@@ -8,6 +9,7 @@ import '../styles/global.css';
     <meta charset="UTF-8">
     <title>Magic Foam Sponge - Griha Nova</title>
     <link rel="icon" type="image/jpeg" href="/favicon.jpg" />
+    <Tracking />
     <link rel="shortcut icon" href="/favicon.jpg" />
     <style>
         /* ==========================================================================
@@ -2656,6 +2658,11 @@ details p {
     }
 
     calculateOrderTotal();
+    
+    if (isManual && typeof window.trackEvent === 'function') {
+      window.trackEvent('AddToCart', { content_name: prodName, currency: 'BDT' });
+    }
+    
     focusNameInput();
   };
 
@@ -2663,6 +2670,17 @@ details p {
   const qtyInput = document.getElementById('qty-input');
   const qtyPlus = document.getElementById('qty-plus');
   const qtyMinus = document.getElementById('qty-minus');
+  
+  const nameInput = document.getElementById('cust-name');
+  if (nameInput) {
+    let checkoutFired = false;
+    nameInput.addEventListener('focus', () => {
+      if (!checkoutFired && typeof window.trackEvent === 'function') {
+        window.trackEvent('InitiateCheckout', { currency: 'BDT' });
+        checkoutFired = true;
+      }
+    });
+  }
 
   if (qtyPlus && qtyInput) {
     qtyPlus.addEventListener('click', () => {
@@ -2803,7 +2821,8 @@ details p {
           }
 
           // Redirect to Thank You page
-          window.location.href = "/success-order?orderId=" + orderId;
+          const totalAmount = document.getElementById('summary-total-price').textContent;
+          window.location.href = "/success-order?orderId=" + orderId + "&value=" + totalAmount;
         } else {
           showToast(result.message || 'দুঃখিত, অর্ডার প্লেস করতে সমস্যা হয়েছে। দয়া করে আবার চেষ্টা করুন।', 'error');
         }

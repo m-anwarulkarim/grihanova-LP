@@ -37,8 +37,16 @@ import {
 const getDeliveryCharge = (subtotal: number, dhakaConfig: any, area: string) => area === "inside" ? 60 : 120;
 const getDhakaConfig = () => ({ enabled: true, inside: 60, outside: 120 });
 
-const trackInitiateCheckout = (a: any, b: any, c: any) => {};
-const trackAddToCart = (a: any, b: any, c: any) => {};
+const trackInitiateCheckout = (price: number, qty: number, currency: string) => {
+  if (typeof window !== 'undefined' && (window as any).trackEvent) {
+    (window as any).trackEvent('InitiateCheckout', { value: price, num_items: qty, currency });
+  }
+};
+const trackAddToCart = (name: string, price: number, currency: string) => {
+  if (typeof window !== 'undefined' && (window as any).trackEvent) {
+    (window as any).trackEvent('AddToCart', { content_name: name, value: price, currency });
+  }
+};
 const trackPurchase = (a: any, b: any, c: any, d: any, e: any) => {};
 const trackViewContent = (a: any, b: any, c: any, d: any) => {};
 const imgBefore = "/lp/tap-filter/before-poster.webp";

@@ -21,8 +21,39 @@ const orderId = Astro.url.searchParams.get('orderId') || '12345';
         <p class="text-2xl font-bold text-blue-600 mt-1">#{orderId}</p>
       </div>
       <a href="/" class="mt-8 inline-block w-full py-3 bg-slate-900 text-white rounded-xl font-semibold hover:bg-slate-800 transition">
-        ড্যাশবোর্ডে ফিরে যান
+        হোম পেজে ফিরে যান
       </a>
     </div>
   </div>
+
+  <script is:inline>
+    document.addEventListener('DOMContentLoaded', () => {
+      const urlParams = new URLSearchParams(window.location.search);
+      const orderId = urlParams.get('orderId') || '12345';
+      const value = urlParams.get('value') || 0;
+      
+      const convertBengaliToEnglish = (str) => {
+        const bn = ['০','১','২','৩','৪','৫','৬','৭','৮','৯'];
+        const en = ['0','1','2','3','4','5','6','7','8','9'];
+        let result = '';
+        for(let i=0; i<str.length; i++){
+          const index = bn.indexOf(str[i]);
+          if(index > -1) result += en[index];
+          else result += str[i];
+        }
+        return result;
+      };
+      
+      const cleanValue = Number(convertBengaliToEnglish(String(value)).replace(/[^0-9.]/g, '')) || 0;
+      
+      if (typeof window.trackEvent === 'function') {
+         window.trackEvent('Purchase', {
+           currency: 'BDT',
+           value: cleanValue,
+           content_name: 'Product Purchase',
+           order_id: orderId
+         });
+      }
+    });
+  </script>
 </Layout>
