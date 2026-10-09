@@ -2654,31 +2654,83 @@ details p {
   const modalWaBtn = document.getElementById('modal-wa-btn');
 
   if (checkoutForm) {
-    checkoutForm.addEventListener('submit', (e) => {
+    checkoutForm.addEventListener('submit', async (e) => {
       e.preventDefault();
 
       const name = document.getElementById('cust-name').value.trim();
       const phone = document.getElementById('cust-phone').value.trim();
       const address = document.getElementById('cust-address').value.trim();
+      const selectedVariant = document.querySelector('input[name="selected_variant"]:checked')?.value || 'ম্যাজিক ফোম স্পঞ্জ';
+      const qty = qtyInput ? parseInt(qtyInput.value) : 1;
+      const totalAmount = summaryTotalPrice ? summaryTotalPrice.textContent : '0';
 
-      const selectedVariant = document.querySelector('input[name="selected_variant"]:checked')?.value || '২৪কে গোল্ড সাফ্রন সেরাম';
-      const qty = qtyInput ? qtyInput.value : 1;
-      const totalAmount = summaryTotalPrice ? summaryTotalPrice.textContent : '১৯২০';
-
-      const orderId = '#AP-' + Math.floor(1000 + Math.random() * 9000);
-
-      document.getElementById('m-id').textContent = orderId;
-      document.getElementById('m-name').textContent = name;
-      document.getElementById('m-phone').textContent = phone;
-      document.getElementById('m-variant').textContent = `${selectedVariant} (${qty}টি)`;
-      document.getElementById('m-total').textContent = `৳${totalAmount}`;
-
-      const waText = encodeURIComponent(`হ্যালো Aurélia Paris, আমি নতুন অর্ডার করেছি!\n\nঅর্ডার আইডি: ${orderId}\nনাম: ${name}\nফোন: ${phone}\nঠিকানা: ${address}\nপ্যাকেজ: ${selectedVariant} (${qty}টি)\nসর্বমোট প্রদেয়: ৳${totalAmount}`);
-      if (modalWaBtn) {
-        modalWaBtn.href = `https://wa.me/8801790-081623?text=${waText}`;
+      let division = "outside-dhaka";
+      let deliveryCharge = 120;
+      const selectedDelivery = document.querySelector('input[name="delivery_area"]:checked');
+      if (selectedDelivery && selectedDelivery.value === "70") {
+        division = "inside-dhaka";
+        deliveryCharge = 70;
       }
 
-      if (modal) modal.classList.add('open');
+      const submitBtn = checkoutForm.querySelector('button[type="submit"]');
+      const originalBtnText = submitBtn.innerHTML;
+      submitBtn.disabled = true;
+      submitBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>অর্ডার প্রসেস হচ্ছে...</span>';
+
+      try {
+        const orderData = {
+          name: name,
+          phone_no: phone,
+          shipping_address: address,
+          division: division,
+          product_id: "6a9da52a7bde5730815c6ffc", // Placeholder ID for Magic Foam
+          quantity: qty,
+          deliveryCharge: deliveryCharge,
+          note: "Variant: " + selectedVariant
+        };
+
+        const response = await fetch('/api/place-order', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(orderData)
+        });
+
+        const result = await response.json();
+
+        if (response.ok && result.success !== false) {
+          // Saleecom usually returns order data in result.data or result.order
+          let realOrderId = result.orderId || result.order_id;
+          if (!realOrderId && result.data) {
+             realOrderId = result.data.orderId || result.data.order_id || result.data.id;
+          }
+          if (!realOrderId && result.order) {
+             realOrderId = result.order.orderId || result.order.order_id || result.order.id;
+          }
+          
+          const orderId = realOrderId || ('#GN-' + Math.floor(1000 + Math.random() * 9000));
+
+          document.getElementById('m-id').textContent = orderId;
+          document.getElementById('m-name').textContent = name;
+          document.getElementById('m-phone').textContent = phone;
+          document.getElementById('m-variant').textContent = `${selectedVariant} (${qty}টি)`;
+          document.getElementById('m-total').textContent = `৳${totalAmount}`;
+
+          const waText = encodeURIComponent(`হ্যালো Griha Nova, আমি ম্যাজিক ফোমের নতুন অর্ডার করেছি!\n\nঅর্ডার আইডি: ${orderId}\nনাম: ${name}\nফোন: ${phone}\nঠিকানা: ${address}\nপ্যাকেজ: ${selectedVariant} (${qty}টি)\nসর্বমোট প্রদেয়: ৳${totalAmount}`);
+          if (modalWaBtn) {
+            modalWaBtn.href = `https://wa.me/8801790081623?text=${waText}`;
+          }
+
+          if (modal) modal.classList.add('open');
+        } else {
+          alert('দুঃখিত, অর্ডার প্লেস করতে সমস্যা হয়েছে। দয়া করে আবার চেষ্টা করুন।');
+        }
+      } catch (error) {
+        console.error("Order error", error);
+        alert('নেটওয়ার্ক সমস্যা। দয়া করে আবার চেষ্টা করুন।');
+      } finally {
+        submitBtn.disabled = false;
+        submitBtn.innerHTML = originalBtnText;
+      }
     });
   }
 
