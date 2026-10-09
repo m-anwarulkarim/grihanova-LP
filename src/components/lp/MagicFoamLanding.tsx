@@ -336,6 +336,10 @@ export default function MagicFoamLanding() {
           </div>
         </div>
       </section>
+
+      <div className="pb-10 text-center text-xs text-slate-500 pt-8">
+        Developed by <a href="https://wa.me/8801560007230?text=Hello%20HaqPlus%20IT!%20I%20saw%20Griha%20Nova%20website%20and%20want%20to%20build%20a%20project." target="_blank" rel="noopener noreferrer" className="underline hover:text-amber-700 font-semibold">Haq Plus IT</a>
+      </div>
     </div>
     </>
   );

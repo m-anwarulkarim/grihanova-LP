@@ -1344,7 +1344,7 @@ export default function TapFilterLanding() {
       </section>
 
       <div className="pb-28 md:pb-16 text-center text-xs text-slate-500">
-        Developed by <a href="https://ecomah.com" target="_blank" rel="noopener noreferrer" className="underline hover:text-sky-700 font-semibold">Ecomah</a>
+        Developed by <a href="https://wa.me/8801560007230?text=Hello%20HaqPlus%20IT!%20I%20saw%20Griha%20Nova%20website%20and%20want%20to%20build%20a%20project." target="_blank" rel="noopener noreferrer" className="underline hover:text-sky-700 font-semibold">Haq Plus IT</a>
       </div>
 
       {/* STICKY BOTTOM CTA */}

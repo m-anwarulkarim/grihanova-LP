@@ -858,6 +858,10 @@ export default function PainPatchLanding() {
         </RevealSection>
       </section>
 
+      <div className="pb-28 md:pb-20 text-center text-xs text-slate-500 pt-8">
+        Developed by <a href="https://wa.me/8801560007230?text=Hello%20HaqPlus%20IT!%20I%20saw%20Griha%20Nova%20website%20and%20want%20to%20build%20a%20project." target="_blank" rel="noopener noreferrer" className="underline hover:text-emerald-700 font-semibold">Haq Plus IT</a>
+      </div>
+
       {/* STICKY CTA — always visible on every screen */}
       <div className="fixed bottom-0 inset-x-0 z-50 bg-gradient-to-t from-emerald-950/95 to-emerald-900/90 backdrop-blur-md border-t border-emerald-400/30 shadow-[0_-8px_30px_rgba(0,0,0,0.25)]">
         <div className="mx-auto max-w-3xl px-3 py-3 flex items-center gap-3">
