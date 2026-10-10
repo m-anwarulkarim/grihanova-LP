@@ -398,7 +398,7 @@ function ReviewsSection() {
           <span className="inline-flex items-center gap-2 bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-xs font-bold">
             <Award className="w-3.5 h-3.5" /> কাস্টমার রিভিউ
           </span>
-          <h2 className="mt-3 text-3xl md:text-4xl font-extrabold text-sky-900">
+          <h2 className="mt-3 text-3xl md:text-4xl font-extrabold text-sky-900" id="reviews">
             আমাদের গ্রাহকরা কী বলছেন
           </h2>
           <p className="mt-2 text-slate-600 text-sm md:text-base">
@@ -837,8 +837,43 @@ export default function TapFilterLanding() {
         @keyframes tf-guarantee-pulse { 0%,100% { box-shadow: 0 0 0 0 rgba(255,255,255,0.55), 0 10px 30px -8px rgba(8,47,73,0.35); } 50% { box-shadow: 0 0 0 14px rgba(255,255,255,0), 0 10px 30px -8px rgba(8,47,73,0.35); } }
       `}</style>
 
+      {/* NAVBAR */}
+      <header className="sticky top-0 inset-x-0 z-[100] bg-[#fdfbf7]/95 backdrop-blur-md shadow-sm transition-all duration-300">
+        <div className="max-w-[1200px] mx-auto px-4 sm:px-6 h-[72px] md:h-[80px] flex items-center justify-between">
+          
+          {/* Brand Logo */}
+          <a href="#" className="flex items-center outline-none shrink-0 w-auto md:w-1/4">
+            <img 
+              src="/logo.png" 
+              alt="Griha Nova" 
+              className="h-[45px] md:h-[55px] w-auto object-contain transition-transform hover:scale-105" 
+            />
+          </a>
+
+          {/* Desktop Nav Links */}
+          <nav className="hidden md:flex flex-1 justify-center items-center gap-7 font-bold text-[#333] text-[15px]">
+            <a href="#hero" className="hover:text-[#f59e0b] transition-colors">হোম</a>
+            <a href="#benefits" className="hover:text-[#f59e0b] transition-colors">উপকারিতা</a>
+            <a href="#pricing" className="hover:text-[#f59e0b] transition-colors">গ্যালারি</a>
+            <a href="#reviews" className="hover:text-[#f59e0b] transition-colors">রিভিউ</a>
+            <a href="#faq" className="hover:text-[#f59e0b] transition-colors">প্রশ্নোত্তর</a>
+          </nav>
+          
+          {/* Order Button */}
+          <div className="flex justify-end shrink-0 w-auto md:w-1/4">
+            <button 
+              type="button" 
+              onClick={handleFloatingCta}
+              className="inline-flex items-center justify-center px-5 py-2 md:px-7 md:py-2.5 rounded-full bg-[#f59e0b] text-white font-extrabold text-sm md:text-[15px] hover:bg-[#d97706] shadow-lg shadow-orange-500/30 transition-all hover:shadow-xl hover:-translate-y-0.5"
+            >
+              অর্ডার করুন
+            </button>
+          </div>
+        </div>
+      </header>
+
       {/* HERO */}
-      <section className="tf-hero pt-14 pb-20 md:pt-20 md:pb-28">
+      <section id="hero" className="tf-hero pt-14 pb-20 md:pt-20 md:pb-28">
         {droplets.map((i) => (
           <span
             key={i}
@@ -953,6 +988,7 @@ export default function TapFilterLanding() {
             <X className="w-5 h-5" />
           </button>
           <div
+            id="video"
             onClick={(e) => e.stopPropagation()}
             className="relative rounded-2xl overflow-hidden shadow-2xl ring-4 ring-white/20 bg-black w-full"
             style={{ maxWidth: 360, aspectRatio: "9 / 16" }}
@@ -970,7 +1006,7 @@ export default function TapFilterLanding() {
       )}
 
       {/* BEFORE / AFTER */}
-      <section className="py-14 md:py-20">
+      <section id="benefits" className="py-14 md:py-20">
         <div className="max-w-5xl mx-auto px-4">
           <div className="text-center mb-10" data-reveal>
             <h2 className="text-3xl md:text-4xl font-extrabold text-sky-900">
@@ -1608,7 +1644,7 @@ export default function TapFilterLanding() {
       </section>
 
       {/* FAQ */}
-      <section className="py-14 md:py-20 bg-gradient-to-b from-white to-sky-50">
+      <section id="faq" className="py-14 md:py-20 bg-gradient-to-b from-white to-sky-50">
         <div className="max-w-3xl mx-auto px-4">
           <div className="text-center mb-10" data-reveal>
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-100 text-sky-700 text-xs font-bold">
