@@ -181,12 +181,27 @@ img {
   flex-shrink: 0;
 }
 
-.ann-text-honey {
-  color: #fef3c7;
-  white-space: nowrap;
+.ann-marquee-container {
   flex: 1;
+  overflow: hidden;
+  display: flex;
+  white-space: nowrap;
+  width: 100%;
+}
+.ann-marquee-content {
+  display: flex;
+  animation: ann-scroll 15s linear infinite;
+}
+.ann-marquee-group {
+  display: flex;
+  gap: 50px;
+  padding-right: 50px;
+  color: #fef3c7;
   font-size: 13px;
-  font-size: 12px;
+}
+@keyframes ann-scroll {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
 }
 
 .gold-bold {
