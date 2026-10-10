@@ -1763,10 +1763,13 @@ export default function TapFilterLanding() {
         .floating-actions-container {
           position: fixed;
           bottom: 24px;
-          right: 24px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: max-content;
           z-index: 999;
           display: flex;
           align-items: center;
+          justify-content: center;
           gap: 12px;
         }
         .floating-wa-btn {
@@ -1830,6 +1833,8 @@ export default function TapFilterLanding() {
             bottom: 14px;
             right: 14px;
             left: 14px;
+            width: auto;
+            transform: none;
             gap: 10px;
           }
           .floating-wa-btn {
