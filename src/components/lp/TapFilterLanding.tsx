@@ -917,15 +917,13 @@ export default function TapFilterLanding() {
                     </div>
                   </button>
                 ) : (
-                  <video
-                    src="/lp/tap-filter/IMG_3413.mp4"
-                    autoPlay={true}
-                    muted={false}
-                    loop={true}
-                    playsInline={true}
-                    controls={true}
+                  <iframe
+                    src="https://www.youtube.com/embed/JdIvHLqJCQU?autoplay=1&mute=0&loop=1&playlist=JdIvHLqJCQU"
+                    title="Tap Filter Demo Video"
+                    frameBorder="0"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
                     className="absolute inset-0 w-full h-full"
-                    style={{ objectFit: "cover" }}
                   />
                 )}
               </div>
@@ -959,15 +957,13 @@ export default function TapFilterLanding() {
             className="relative rounded-2xl overflow-hidden shadow-2xl ring-4 ring-white/20 bg-black w-full"
             style={{ maxWidth: 360, aspectRatio: "9 / 16" }}
           >
-            <video
-              src="/lp/tap-filter/IMG_3413.mp4"
-              autoPlay={true}
-              muted={false}
-              loop={true}
-              playsInline={true}
-              controls={true}
+            <iframe
+              src="https://www.youtube.com/embed/JdIvHLqJCQU?autoplay=1&mute=0&loop=1&playlist=JdIvHLqJCQU"
+              title="Tap Filter Demo Video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              allowFullScreen
               className="absolute inset-0 w-full h-full"
-              style={{ objectFit: "contain" }}
             />
           </div>
         </div>
