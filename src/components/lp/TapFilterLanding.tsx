@@ -34,27 +34,49 @@ import {
   X,
 } from "lucide-react";
 // Mock delivery functions
-const getDeliveryCharge = (subtotal: number, dhakaConfig: any, area: string) => area === "inside" ? 60 : 120;
+const getDeliveryCharge = (subtotal: number, dhakaConfig: any, area: string) =>
+  area === "inside" ? 60 : 120;
 const getDhakaConfig = () => ({ enabled: true, inside: 60, outside: 120 });
 
-const trackInitiateCheckout = (price: number, qty: number, currency: string) => {
-  if (typeof window !== 'undefined' && (window as any).trackEvent) {
-    (window as any).trackEvent('InitiateCheckout', { value: price, num_items: qty, currency });
+const trackInitiateCheckout = (
+  price: number,
+  qty: number,
+  currency: string,
+) => {
+  if (typeof window !== "undefined" && (window as any).trackEvent) {
+    (window as any).trackEvent("InitiateCheckout", {
+      value: price,
+      num_items: qty,
+      currency,
+    });
   }
 };
 const trackAddToCart = (name: string, price: number, currency: string) => {
-  if (typeof window !== 'undefined' && (window as any).trackEvent) {
-    (window as any).trackEvent('AddToCart', { content_name: name, value: price, currency });
+  if (typeof window !== "undefined" && (window as any).trackEvent) {
+    (window as any).trackEvent("AddToCart", {
+      content_name: name,
+      value: price,
+      currency,
+    });
   }
 };
 const trackPurchase = (price: number, currency: string) => {
-  if (typeof window !== 'undefined' && (window as any).trackEvent) {
-    (window as any).trackEvent('Purchase', { value: price, currency });
+  if (typeof window !== "undefined" && (window as any).trackEvent) {
+    (window as any).trackEvent("Purchase", { value: price, currency });
   }
 };
-const trackViewContent = (id: string, name: string, price: number, currency: string) => {
-  if (typeof window !== 'undefined' && (window as any).trackEvent) {
-    (window as any).trackEvent('ViewContent', { content_name: name, value: price, currency });
+const trackViewContent = (
+  id: string,
+  name: string,
+  price: number,
+  currency: string,
+) => {
+  if (typeof window !== "undefined" && (window as any).trackEvent) {
+    (window as any).trackEvent("ViewContent", {
+      content_name: name,
+      value: price,
+      currency,
+    });
   }
 };
 const imgBefore = "/lp/tap-filter/before-poster.webp";
@@ -80,12 +102,43 @@ const tapFilterPackageImages = [
 ] as const;
 
 const tiers: Tier[] = [
-  { pieces: 25, price: 390, freebies: ["ভেলক্রো ব্যান্ড 10 পিস"], image: tapFilterPackageImages[0], alt: "২৫ পিস Premium water faucet filter প্যাকেজ", productId: "6a9955125f81c2adfbdc51d3" },
-  { pieces: 50, price: 650, freebies: ["ভেলক্রো ব্যান্ড 20 পিস"], image: tapFilterPackageImages[1], alt: "৫০ পিস Premium water faucet filter প্যাকেজ", productId: "6a9954a85f81c2adfbdc4570" },
-  { pieces: 100, price: 880, freebies: ["ভেলক্রো ব্যান্ড ৪০ পিস"], badge: "সবচেয়ে জনপ্রিয়", highlight: true, ribbon: "BEST VALUE", image: tapFilterPackageImages[2], alt: "১০০ পিস Premium water faucet filter বেস্ট ভ্যালু কম্বো", productId: "6a9954a35f81c2adfbdc44dc" },
-  { pieces: 200, price: 1180, freebies: ["ভেলক্রো ব্যান্ড ৮০ পিস"], badge: "COMBO", image: tapFilterPackageImages[3], alt: "২০০ পিস Premium water faucet filter কম্বো", productId: "6a6f7b716841324a31ccb46b" },
+  {
+    pieces: 25,
+    price: 390,
+    freebies: ["ভেলক্রো ব্যান্ড 10 পিস"],
+    image: tapFilterPackageImages[0],
+    alt: "২৫ পিস Premium water faucet filter প্যাকেজ",
+    productId: "6a9955125f81c2adfbdc51d3",
+  },
+  {
+    pieces: 50,
+    price: 650,
+    freebies: ["ভেলক্রো ব্যান্ড 20 পিস"],
+    image: tapFilterPackageImages[1],
+    alt: "৫০ পিস Premium water faucet filter প্যাকেজ",
+    productId: "6a9954a85f81c2adfbdc4570",
+  },
+  {
+    pieces: 100,
+    price: 880,
+    freebies: ["ভেলক্রো ব্যান্ড ৪০ পিস"],
+    badge: "সবচেয়ে জনপ্রিয়",
+    highlight: true,
+    ribbon: "BEST VALUE",
+    image: tapFilterPackageImages[2],
+    alt: "১০০ পিস Premium water faucet filter বেস্ট ভ্যালু কম্বো",
+    productId: "6a9954a35f81c2adfbdc44dc",
+  },
+  {
+    pieces: 200,
+    price: 1180,
+    freebies: ["ভেলক্রো ব্যান্ড ৮০ পিস"],
+    badge: "COMBO",
+    image: tapFilterPackageImages[3],
+    alt: "২০০ পিস Premium water faucet filter কম্বো",
+    productId: "6a6f7b716841324a31ccb46b",
+  },
 ];
-
 
 const trustItems = [
   { icon: Droplets, label: "পরিস্কার ও বিশুদ্ধ পানি" },
@@ -94,10 +147,30 @@ const trustItems = [
 ];
 
 const reviews = [
-  { name: "রাশেদা বেগম", city: "ঢাকা", rating: 5, text: "পানি অনেক পরিস্কার আসে এখন। ইনস্টল করাও অনেক সহজ ছিল। পরিবারের সবাই খুশি।" },
-  { name: "মোঃ ইমরান হোসেন", city: "চট্টগ্রাম", rating: 5, text: "দাম অনুযায়ী প্রোডাক্টের কোয়ালিটি অসাধারণ। ট্যাপের ময়লা একদম আটকে ফেলে।" },
-  { name: "সুমাইয়া আক্তার", city: "সিলেট", rating: 4, text: "ডেলিভারি দ্রুত পেয়েছি, প্যাকেজিং ভালো ছিল। কাজ করছে ভালোভাবেই, রেকমেন্ড করব।" },
-  { name: "আব্দুল করিম", city: "খুলনা", rating: 5, text: "কম্বো প্যাকেজ নিয়েছিলাম — পুরো ফ্যামিলিতে বিলিয়ে দিয়েছি। সবাই পজিটিভ ফিডব্যাক দিয়েছে।" },
+  {
+    name: "রাশেদা বেগম",
+    city: "ঢাকা",
+    rating: 5,
+    text: "পানি অনেক পরিস্কার আসে এখন। ইনস্টল করাও অনেক সহজ ছিল। পরিবারের সবাই খুশি।",
+  },
+  {
+    name: "মোঃ ইমরান হোসেন",
+    city: "চট্টগ্রাম",
+    rating: 5,
+    text: "দাম অনুযায়ী প্রোডাক্টের কোয়ালিটি অসাধারণ। ট্যাপের ময়লা একদম আটকে ফেলে।",
+  },
+  {
+    name: "সুমাইয়া আক্তার",
+    city: "সিলেট",
+    rating: 4,
+    text: "ডেলিভারি দ্রুত পেয়েছি, প্যাকেজিং ভালো ছিল। কাজ করছে ভালোভাবেই, রেকমেন্ড করব।",
+  },
+  {
+    name: "আব্দুল করিম",
+    city: "খুলনা",
+    rating: 5,
+    text: "কম্বো প্যাকেজ নিয়েছিলাম — পুরো ফ্যামিলিতে বিলিয়ে দিয়েছি। সবাই পজিটিভ ফিডব্যাক দিয়েছে।",
+  },
 ];
 
 const stats = [
@@ -114,16 +187,51 @@ const trustBadges = [
 ];
 
 const benefits = [
-  { icon: ShieldCheck, title: "মজবুত ও টেকসই", desc: "উন্নত মানের ম্যাটেরিয়ালে তৈরি, দীর্ঘদিন ব্যবহারের জন্য উপযোগী।" },
-  { icon: Wrench, title: "সহজে লাগানো ও খুলে ফেলা যায়", desc: "কোনো টুলস ছাড়াই ঘরের যেকোনো ট্যাপে সহজে সংযোগ করা যায়।" },
-  { icon: Sparkles, title: "দীর্ঘস্থায়ী ব্যবহার উপযোগী", desc: "বার বার পরিষ্কার করে ব্যবহার করা যায়, খরচ সাশ্রয়ী।" },
+  {
+    icon: ShieldCheck,
+    title: "মজবুত ও টেকসই",
+    desc: "উন্নত মানের ম্যাটেরিয়ালে তৈরি, দীর্ঘদিন ব্যবহারের জন্য উপযোগী।",
+  },
+  {
+    icon: Wrench,
+    title: "সহজে লাগানো ও খুলে ফেলা যায়",
+    desc: "কোনো টুলস ছাড়াই ঘরের যেকোনো ট্যাপে সহজে সংযোগ করা যায়।",
+  },
+  {
+    icon: Sparkles,
+    title: "দীর্ঘস্থায়ী ব্যবহার উপযোগী",
+    desc: "বার বার পরিষ্কার করে ব্যবহার করা যায়, খরচ সাশ্রয়ী।",
+  },
 ];
 
 const districts = [
-  "ঢাকা", "চট্টগ্রাম", "খুলনা", "রাজশাহী", "সিলেট", "বরিশাল", "রংপুর", "ময়মনসিংহ",
-  "কুমিল্লা", "নারায়ণগঞ্জ", "গাজীপুর", "নরসিংদী", "টাঙ্গাইল", "কক্সবাজার", "বগুড়া",
-  "যশোর", "ফরিদপুর", "দিনাজপুর", "পাবনা", "কুষ্টিয়া", "নোয়াখালী", "ফেনী", "চাঁদপুর",
-  "মৌলভীবাজার", "হবিগঞ্জ", "সুনামগঞ্জ", "অন্যান্য",
+  "ঢাকা",
+  "চট্টগ্রাম",
+  "খুলনা",
+  "রাজশাহী",
+  "সিলেট",
+  "বরিশাল",
+  "রংপুর",
+  "ময়মনসিংহ",
+  "কুমিল্লা",
+  "নারায়ণগঞ্জ",
+  "গাজীপুর",
+  "নরসিংদী",
+  "টাঙ্গাইল",
+  "কক্সবাজার",
+  "বগুড়া",
+  "যশোর",
+  "ফরিদপুর",
+  "দিনাজপুর",
+  "পাবনা",
+  "কুষ্টিয়া",
+  "নোয়াখালী",
+  "ফেনী",
+  "চাঁদপুর",
+  "মৌলভীবাজার",
+  "হবিগঞ্জ",
+  "সুনামগঞ্জ",
+  "অন্যান্য",
 ];
 
 function useReveal() {
@@ -138,7 +246,7 @@ function useReveal() {
           }
         });
       },
-      { threshold: 0.15 }
+      { threshold: 0.15 },
     );
     els.forEach((el) => io.observe(el));
     return () => io.disconnect();
@@ -149,38 +257,73 @@ const phone = "+8801708356800";
 const waHref = `https://wa.me/8801708356800?text=হ্যালো%20Griha%20Nova!%20আমি%20অ্যাডভান্সড%20ট্যাপ%20ফিল্টার%20সম্পর্কে%20বিস্তারিত%20জানতে%20চাই।`;
 
 function BengaliNum(n: number | string) {
-  const map: Record<string, string> = { "0": "০", "1": "১", "2": "২", "3": "৩", "4": "৪", "5": "৫", "6": "৬", "7": "৭", "8": "৮", "9": "৯" };
-  return String(n).split("").map((c) => map[c] ?? c).join("");
+  const map: Record<string, string> = {
+    "0": "০",
+    "1": "১",
+    "2": "২",
+    "3": "৩",
+    "4": "৪",
+    "5": "৫",
+    "6": "৬",
+    "7": "৭",
+    "8": "৮",
+    "9": "৯",
+  };
+  return String(n)
+    .split("")
+    .map((c) => map[c] ?? c)
+    .join("");
 }
 
-function CountUp({ end, decimals = 0, suffix = "", duration = 1600 }: { end: number; decimals?: number; suffix?: string; duration?: number }) {
+function CountUp({
+  end,
+  decimals = 0,
+  suffix = "",
+  duration = 1600,
+}: {
+  end: number;
+  decimals?: number;
+  suffix?: string;
+  duration?: number;
+}) {
   const ref = useRef<HTMLSpanElement>(null);
   const [val, setVal] = useState(0);
   const started = useRef(false);
   useEffect(() => {
     if (!ref.current) return;
-    const io = new IntersectionObserver((entries) => {
-      entries.forEach((e) => {
-        if (e.isIntersecting && !started.current) {
-          started.current = true;
-          const t0 = performance.now();
-          const tick = (now: number) => {
-            const p = Math.min(1, (now - t0) / duration);
-            const eased = 1 - Math.pow(1 - p, 3);
-            setVal(end * eased);
-            if (p < 1) requestAnimationFrame(tick);
-            else setVal(end);
-          };
-          requestAnimationFrame(tick);
-          io.disconnect();
-        }
-      });
-    }, { threshold: 0.4 });
+    const io = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((e) => {
+          if (e.isIntersecting && !started.current) {
+            started.current = true;
+            const t0 = performance.now();
+            const tick = (now: number) => {
+              const p = Math.min(1, (now - t0) / duration);
+              const eased = 1 - Math.pow(1 - p, 3);
+              setVal(end * eased);
+              if (p < 1) requestAnimationFrame(tick);
+              else setVal(end);
+            };
+            requestAnimationFrame(tick);
+            io.disconnect();
+          }
+        });
+      },
+      { threshold: 0.4 },
+    );
     io.observe(ref.current);
     return () => io.disconnect();
   }, [end, duration]);
-  const formatted = decimals > 0 ? val.toFixed(decimals) : Math.round(val).toLocaleString("en-US");
-  return <span ref={ref}>{BengaliNum(formatted)}{suffix}</span>;
+  const formatted =
+    decimals > 0
+      ? val.toFixed(decimals)
+      : Math.round(val).toLocaleString("en-US");
+  return (
+    <span ref={ref}>
+      {BengaliNum(formatted)}
+      {suffix}
+    </span>
+  );
 }
 
 const OFFER_DURATION_MS = 24 * 60 * 60 * 1000; // 24h rolling window
@@ -189,7 +332,9 @@ function UrgencyBar({ onCta }: { onCta: () => void }) {
   // Rolling 24h countdown anchored per-browser (localStorage) so refresh doesn't reset weirdly.
   const targetRef = useRef<number>(0);
   const [remaining, setRemaining] = useState<number>(OFFER_DURATION_MS);
-  const [viewers, setViewers] = useState<number>(() => 38 + Math.floor(Math.random() * 24));
+  const [viewers, setViewers] = useState<number>(
+    () => 38 + Math.floor(Math.random() * 24),
+  );
 
   useEffect(() => {
     const KEY = "tf_offer_deadline";
@@ -200,7 +345,8 @@ function UrgencyBar({ onCta }: { onCta: () => void }) {
       localStorage.setItem(KEY, String(dl));
     }
     targetRef.current = dl;
-    const tick = () => setRemaining(Math.max(0, targetRef.current - Date.now()));
+    const tick = () =>
+      setRemaining(Math.max(0, targetRef.current - Date.now()));
     tick();
     const id = window.setInterval(tick, 1000);
     return () => window.clearInterval(id);
@@ -252,8 +398,12 @@ function ReviewsSection() {
           <span className="inline-flex items-center gap-2 bg-amber-100 text-amber-800 px-3 py-1 rounded-full text-xs font-bold">
             <Award className="w-3.5 h-3.5" /> কাস্টমার রিভিউ
           </span>
-          <h2 className="mt-3 text-3xl md:text-4xl font-extrabold text-sky-900">আমাদের গ্রাহকরা কী বলছেন</h2>
-          <p className="mt-2 text-slate-600 text-sm md:text-base">হাজারো সন্তুষ্ট পরিবারের ভরসার নাম</p>
+          <h2 className="mt-3 text-3xl md:text-4xl font-extrabold text-sky-900">
+            আমাদের গ্রাহকরা কী বলছেন
+          </h2>
+          <p className="mt-2 text-slate-600 text-sm md:text-base">
+            হাজারো সন্তুষ্ট পরিবারের ভরসার নাম
+          </p>
         </div>
 
         <div className="relative" data-reveal>
@@ -289,16 +439,23 @@ function ReviewsSection() {
                     {r.name.charAt(0)}
                   </div>
                   <div>
-                    <div className="font-bold text-sky-900 text-sm leading-tight">{r.name}</div>
+                    <div className="font-bold text-sky-900 text-sm leading-tight">
+                      {r.name}
+                    </div>
                     <div className="text-xs text-slate-500">{r.city}</div>
                   </div>
                 </div>
                 <div className="flex gap-0.5 mb-2">
                   {Array.from({ length: 5 }).map((_, k) => (
-                    <Star key={k} className={`w-4 h-4 ${k < r.rating ? "fill-amber-400 text-amber-400" : "text-slate-300"}`} />
+                    <Star
+                      key={k}
+                      className={`w-4 h-4 ${k < r.rating ? "fill-amber-400 text-amber-400" : "text-slate-300"}`}
+                    />
                   ))}
                 </div>
-                <p className="text-sm text-slate-700 leading-relaxed">"{r.text}"</p>
+                <p className="text-sm text-slate-700 leading-relaxed">
+                  "{r.text}"
+                </p>
                 <div className="mt-3 inline-flex items-center gap-1 text-[11px] font-semibold text-emerald-700">
                   <CheckCircle2 className="w-3.5 h-3.5" /> ভেরিফায়েড ক্রেতা
                 </div>
@@ -329,7 +486,9 @@ export default function TapFilterLanding() {
   const [tierPieces, setTierPieces] = useState<number>(100);
   const [quantity, setQuantity] = useState<number>(1);
   const [note, setNote] = useState("");
-  const [deliveryArea, setDeliveryArea] = useState<"inside" | "outside">("outside");
+  const [deliveryArea, setDeliveryArea] = useState<"inside" | "outside">(
+    "outside",
+  );
   const dhakaCfg = getDhakaConfig();
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [submitting, setSubmitting] = useState(false);
@@ -338,6 +497,7 @@ export default function TapFilterLanding() {
   const submitLockRef = useRef(false);
   const [success, setSuccess] = useState<null | { orderId: string }>(null);
   const [videoOpen, setVideoOpen] = useState(false);
+  const [isHeroVideoPlaying, setIsHeroVideoPlaying] = useState(false);
 
   // Auto-slide pricing tiers with robust manual-interaction pause
   useEffect(() => {
@@ -346,11 +506,20 @@ export default function TapFilterLanding() {
     let hoverPaused = false;
     let interactUntil = 0;
     const IDLE_MS = 7000;
-    const bumpIdle = () => { interactUntil = Date.now() + IDLE_MS; };
+    const bumpIdle = () => {
+      interactUntil = Date.now() + IDLE_MS;
+    };
     // Only bump idle from USER-initiated scroll (ignore programmatic auto-scroll)
-    const onUserScroll = () => { if (!isAutoScrollingRef.current) bumpIdle(); updateActiveIdx(); };
-    const onEnter = () => { hoverPaused = true; };
-    const onLeave = () => { hoverPaused = false; };
+    const onUserScroll = () => {
+      if (!isAutoScrollingRef.current) bumpIdle();
+      updateActiveIdx();
+    };
+    const onEnter = () => {
+      hoverPaused = true;
+    };
+    const onLeave = () => {
+      hoverPaused = false;
+    };
 
     const getStep = () => {
       const first = el.children[0] as HTMLElement | undefined;
@@ -387,7 +556,10 @@ export default function TapFilterLanding() {
       const target = next > maxScroll - 4 ? 0 : next;
       isAutoScrollingRef.current = true;
       el.scrollTo({ left: target, behavior: "smooth" });
-      window.setTimeout(() => { isAutoScrollingRef.current = false; updateActiveIdx(); }, 700);
+      window.setTimeout(() => {
+        isAutoScrollingRef.current = false;
+        updateActiveIdx();
+      }, 700);
     }, 3600);
 
     updateActiveIdx();
@@ -416,7 +588,10 @@ export default function TapFilterLanding() {
     const step = first.offsetWidth + gap;
     isAutoScrollingRef.current = true;
     el.scrollTo({ left: step * idx, behavior: "smooth" });
-    window.setTimeout(() => { isAutoScrollingRef.current = false; setActiveTierIdx(idx); }, 700);
+    window.setTimeout(() => {
+      isAutoScrollingRef.current = false;
+      setActiveTierIdx(idx);
+    }, 700);
   };
 
   const selectedTier = tiers.find((t) => t.pieces === tierPieces) ?? tiers[3];
@@ -424,14 +599,18 @@ export default function TapFilterLanding() {
   const deliveryCharge = getDeliveryCharge(subtotal, undefined, deliveryArea);
   const grandTotal = subtotal + deliveryCharge;
 
-
   // ViewContent — once on mount (helper already pushes view_item to dataLayer)
   const viewContentFiredRef = useRef(false);
   useEffect(() => {
     if (viewContentFiredRef.current) return;
     viewContentFiredRef.current = true;
     try {
-      trackViewContent("lp-tap-filter", "Water faucet tap filter", selectedTier.price, "BDT");
+      trackViewContent(
+        "lp-tap-filter",
+        "Water faucet tap filter",
+        selectedTier.price,
+        "BDT",
+      );
     } catch {}
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -463,11 +642,11 @@ export default function TapFilterLanding() {
     }
   };
 
-
-
   const scrollToForm = (pieces?: number) => {
     if (pieces) setTierPieces(pieces);
-    const tierToTrack = pieces ? PRODUCT_TIERS.find(t => t.pieces === pieces) : selectedTier;
+    const tierToTrack = pieces
+      ? tiers.find((t) => t.pieces === pieces)
+      : selectedTier;
     if (tierToTrack) {
       fireAddToCart(tierToTrack.pieces, tierToTrack.price);
     }
@@ -482,7 +661,8 @@ export default function TapFilterLanding() {
     else if (name.trim().length < 2) e.name = "নাম কমপক্ষে ২ অক্ষরের হতে হবে";
     const m = mobile.replace(/\D/g, "");
     if (!m) e.mobile = "মোবাইল নম্বর দিন";
-    else if (!PHONE_RE.test(m)) e.mobile = "সঠিক মোবাইল নম্বর দিন (০১XXXXXXXXX)";
+    else if (!PHONE_RE.test(m))
+      e.mobile = "সঠিক মোবাইল নম্বর দিন (০১XXXXXXXXX)";
     if (!address.trim()) e.address = "ঠিকানা দিন";
     else if (address.trim().length < 5) e.address = "সম্পূর্ণ ঠিকানা লিখুন";
     setErrors(e);
@@ -491,7 +671,9 @@ export default function TapFilterLanding() {
 
   const isFormFilled = () => {
     const m = mobile.replace(/\D/g, "");
-    return name.trim().length >= 2 && PHONE_RE.test(m) && address.trim().length >= 5;
+    return (
+      name.trim().length >= 2 && PHONE_RE.test(m) && address.trim().length >= 5
+    );
   };
 
   const handleFloatingCta = () => {
@@ -516,44 +698,53 @@ export default function TapFilterLanding() {
         `ফ্রি গিফট: ${selectedTier.freebies.join(" + ")}`,
         note.trim() ? `নোট: ${note.trim()}` : "",
         "উৎস: /lp/tap-filter",
-      ].filter(Boolean).join("\n");
+      ]
+        .filter(Boolean)
+        .join("\n");
 
       const orderData = {
-          name: name.trim(),
-          phone_no: mobile.replace(/\D/g, ""),
-          shipping_address: address.trim(),
-          division: deliveryArea === "inside" ? "inside-dhaka" : "outside-dhaka",
-          product_id: selectedTier.productId,
-          quantity: quantity,
-          deliveryCharge: deliveryCharge,
-          note: combinedNote
+        name: name.trim(),
+        phone_no: mobile.replace(/\D/g, ""),
+        shipping_address: address.trim(),
+        division: deliveryArea === "inside" ? "inside-dhaka" : "outside-dhaka",
+        product_id: selectedTier.productId,
+        quantity: quantity,
+        deliveryCharge: deliveryCharge,
+        note: combinedNote,
       };
 
-      const response = await fetch('/api/place-order', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(orderData)
+      const response = await fetch("/api/place-order", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(orderData),
       });
 
       let result;
       try {
-          result = await response.json();
-      } catch(e) {
-          throw new Error("Server error");
+        result = await response.json();
+      } catch (e) {
+        throw new Error("Server error");
       }
 
       if (!response.ok || !result.success) {
-          throw new Error(result.message || "Order failed");
+        throw new Error(result.message || "Order failed");
       }
-      
-      // Redirect to Thank You page smoothly
-      window.location.href = "/success-order?orderId=" + (result.data?.orderId || "12345");
 
+      // Redirect to Thank You page smoothly
+      window.location.href =
+        "/success-order?orderId=" + (result.data?.orderId || "12345");
     } catch (err: any) {
       submitLockRef.current = false;
-      const msg = err?.message || err?.error_description || err?.details || err?.hint || (typeof err === "string" ? err : JSON.stringify(err));
+      const msg =
+        err?.message ||
+        err?.error_description ||
+        err?.details ||
+        err?.hint ||
+        (typeof err === "string" ? err : JSON.stringify(err));
       console.error("[tap-filter] order submit failed:", err);
-      setErrors({ submit: msg || "অর্ডার পাঠাতে সমস্যা হয়েছে, আবার চেষ্টা করুন" });
+      setErrors({
+        submit: msg || "অর্ডার পাঠাতে সমস্যা হয়েছে, আবার চেষ্টা করুন",
+      });
     } finally {
       setSubmitting(false);
     }
@@ -561,8 +752,6 @@ export default function TapFilterLanding() {
 
   return (
     <div className="tf-root min-h-screen text-slate-800">
-
-
       <style>{`
         @import url('https://fonts.googleapis.com/css2?family=Anek+Bangla:wght@400;500;600;700;800&display=swap');
         .tf-root { background: linear-gradient(180deg, #eaf6ff 0%, #f7fbff 40%, #ffffff 100%); font-family: 'Anek Bangla', 'Hind Siliguri', system-ui, sans-serif; }
@@ -655,7 +844,11 @@ export default function TapFilterLanding() {
           <span
             key={i}
             className="tf-drop"
-            style={{ left: `${(i * 7 + 5) % 100}%`, animationDuration: `${3 + (i % 5)}s`, animationDelay: `${(i % 6) * 0.4}s` }}
+            style={{
+              left: `${(i * 7 + 5) % 100}%`,
+              animationDuration: `${3 + (i % 5)}s`,
+              animationDelay: `${(i % 6) * 0.4}s`,
+            }}
           />
         ))}
         <div className="relative max-w-6xl mx-auto px-4 flex flex-col-reverse md:grid md:grid-cols-2 gap-8 md:gap-10 items-center">
@@ -664,37 +857,75 @@ export default function TapFilterLanding() {
               <Sparkles className="w-4 h-4" /> আল্ট্রা-প্রিমিয়াম কালেকশন
             </span>
             <h1 className="mt-5 text-4xl md:text-6xl font-extrabold leading-tight drop-shadow-xl">
-              ১০০% বিশুদ্ধ পানির নিশ্চয়তায় <br className="hidden md:block"/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-teal-200">প্রিমিয়াম ট্যাপ ফিল্টার</span>
+              ১০০% বিশুদ্ধ পানির নিশ্চয়তায় <br className="hidden md:block" />
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-teal-200">
+                প্রিমিয়াম ট্যাপ ফিল্টার
+              </span>
             </h1>
             <p className="mt-5 text-lg md:text-xl text-cyan-50 font-medium leading-relaxed max-w-lg">
-              ক্ষতিকর আয়রন, জীবাণু ও দুর্গন্ধ দূর করে আপনার পরিবারকে দিন সম্পূর্ণ নিরাপদ পানির গ্যারান্টি। পানি ফোটানোর ঝামেলা এবার ভুলে যান!
+              ক্ষতিকর আয়রন, জীবাণু ও দুর্গন্ধ দূর করে আপনার পরিবারকে দিন
+              সম্পূর্ণ নিরাপদ পানির গ্যারান্টি। পানি ফোটানোর ঝামেলা এবার ভুলে
+              যান!
             </p>
             <div className="mt-8 grid grid-cols-3 gap-3 md:gap-4">
               {trustItems.map((t) => (
-                <div key={t.label} className="bg-white/10 backdrop-blur-md hover:bg-white/20 transition-colors rounded-2xl p-3 md:p-4 text-center border border-white/20 shadow-lg">
+                <div
+                  key={t.label}
+                  className="bg-white/10 backdrop-blur-md hover:bg-white/20 transition-colors rounded-2xl p-3 md:p-4 text-center border border-white/20 shadow-lg"
+                >
                   <t.icon className="w-7 h-7 md:w-8 md:h-8 mx-auto mb-2 text-cyan-200 drop-shadow-md" />
-                  <div className="text-[11px] md:text-sm font-bold leading-tight text-white">{t.label}</div>
+                  <div className="text-[11px] md:text-sm font-bold leading-tight text-white">
+                    {t.label}
+                  </div>
                 </div>
               ))}
             </div>
-            <button type="button" onClick={() => scrollToForm()} className="tf-cta tf-pulse mt-7 inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-base w-full justify-center md:w-auto">
+            <button
+              type="button"
+              onClick={() => scrollToForm()}
+              className="tf-cta tf-pulse mt-7 inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-base w-full justify-center md:w-auto"
+            >
               <Flame className="w-5 h-5" /> এখনই অর্ডার করুন
             </button>
           </div>
 
           <div className="relative flex items-center justify-center w-full mt-4 md:mt-0">
             <div className="relative w-full max-w-[280px] md:max-w-xs">
-              <div className="absolute -inset-4 rounded-3xl bg-white/10 blur-2xl" aria-hidden />
-              <div className="relative w-full rounded-2xl overflow-hidden ring-1 ring-white/30 shadow-2xl bg-black" style={{ aspectRatio: "9 / 16" }}>
-                <iframe
-                  src="https://www.youtube.com/embed/3tqlGvIhxpA?rel=0&modestbranding=1&playsinline=1&autoplay=1&mute=0&loop=1&playlist=3tqlGvIhxpA&controls=1"
-                  title="Water faucet tap filter — লাইভ ডেমো"
-                  loading="eager"
-                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                  allowFullScreen
-                  className="absolute inset-0 w-full h-full"
-                />
+              <div
+                className="absolute -inset-4 rounded-3xl bg-white/10 blur-2xl"
+                aria-hidden
+              />
+              <div
+                className="relative w-full rounded-2xl overflow-hidden ring-1 ring-white/30 shadow-2xl bg-black"
+                style={{ aspectRatio: "9 / 16" }}
+              >
+                {!isHeroVideoPlaying ? (
+                  <button
+                    onClick={() => setIsHeroVideoPlaying(true)}
+                    className="absolute inset-0 w-full h-full group outline-none"
+                    aria-label="Play video"
+                  >
+                    <img
+                      src="https://i.ytimg.com/vi/3tqlGvIhxpA/hqdefault.jpg"
+                      alt="Tap Filter Demo"
+                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                    />
+                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                      <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg shadow-red-600/50 group-hover:scale-110 transition-transform">
+                        <Play className="w-8 h-8 text-white fill-white ml-1" />
+                      </div>
+                    </div>
+                  </button>
+                ) : (
+                  <iframe
+                    src="https://www.youtube.com/embed/3tqlGvIhxpA?rel=0&modestbranding=1&playsinline=1&autoplay=1&mute=0&loop=1&playlist=3tqlGvIhxpA&controls=1"
+                    title="Water faucet tap filter — লাইভ ডেমো"
+                    loading="eager"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    allowFullScreen
+                    className="absolute inset-0 w-full h-full"
+                  />
+                )}
               </div>
             </div>
           </div>
@@ -738,18 +969,24 @@ export default function TapFilterLanding() {
         </div>
       )}
 
-
       {/* BEFORE / AFTER */}
       <section className="py-14 md:py-20">
         <div className="max-w-5xl mx-auto px-4">
           <div className="text-center mb-10" data-reveal>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-sky-900">পার্থক্য দেখুন নিজেই</h2>
-            <p className="mt-2 text-slate-600">সাধারণ ট্যাপের পানি বনাম Water faucet tap filter লাগানোর পরের পানি</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-sky-900">
+              পার্থক্য দেখুন নিজেই
+            </h2>
+            <p className="mt-2 text-slate-600">
+              সাধারণ ট্যাপের পানি বনাম Water faucet tap filter লাগানোর পরের পানি
+            </p>
           </div>
 
           <div className="grid gap-5 md:grid-cols-2 items-stretch relative">
             {/* Before */}
-            <div data-reveal className="rounded-2xl overflow-hidden bg-gradient-to-b from-amber-50 to-white ring-1 ring-amber-200 shadow-sm">
+            <div
+              data-reveal
+              className="rounded-2xl overflow-hidden bg-gradient-to-b from-amber-50 to-white ring-1 ring-amber-200 shadow-sm"
+            >
               <div className="bg-amber-500/90 text-white px-5 py-3 flex items-center justify-between">
                 <span className="font-bold text-sm">সাধারণ ট্যাপ (Before)</span>
                 <Frown className="w-5 h-5" />
@@ -766,10 +1003,17 @@ export default function TapFilterLanding() {
                     className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-amber-900/40 via-transparent to-transparent" />
-                  <span className="absolute bottom-2 left-3 text-xs font-bold text-white bg-amber-600/90 px-2 py-1 rounded-md backdrop-blur">ঘোলা ও ময়লা পানি</span>
+                  <span className="absolute bottom-2 left-3 text-xs font-bold text-white bg-amber-600/90 px-2 py-1 rounded-md backdrop-blur">
+                    ঘোলা ও ময়লা পানি
+                  </span>
                 </div>
                 <ul className="space-y-2 text-sm text-slate-700">
-                  {["দৃশ্যমান ময়লা, বালু ও মরিচা", "দুর্গন্ধ ও অস্বাস্থ্যকর স্বাদ", "চামড়া ও চুলের ক্ষতি", "রান্নার পাত্রে দাগ পড়ে"].map((t) => (
+                  {[
+                    "দৃশ্যমান ময়লা, বালু ও মরিচা",
+                    "দুর্গন্ধ ও অস্বাস্থ্যকর স্বাদ",
+                    "চামড়া ও চুলের ক্ষতি",
+                    "রান্নার পাত্রে দাগ পড়ে",
+                  ].map((t) => (
                     <li key={t} className="flex items-start gap-2">
                       <span className="mt-1 w-1.5 h-1.5 rounded-full bg-amber-600 flex-shrink-0" />
                       <span>{t}</span>
@@ -787,9 +1031,15 @@ export default function TapFilterLanding() {
             </div>
 
             {/* After */}
-            <div data-reveal style={{ transitionDelay: "120ms" }} className="rounded-2xl overflow-hidden bg-gradient-to-b from-sky-50 to-white ring-1 ring-sky-200 shadow-sm">
+            <div
+              data-reveal
+              style={{ transitionDelay: "120ms" }}
+              className="rounded-2xl overflow-hidden bg-gradient-to-b from-sky-50 to-white ring-1 ring-sky-200 shadow-sm"
+            >
               <div className="bg-gradient-to-r from-sky-500 to-cyan-500 text-white px-5 py-3 flex items-center justify-between">
-                <span className="font-bold text-sm">Water faucet tap filter (After)</span>
+                <span className="font-bold text-sm">
+                  Water faucet tap filter (After)
+                </span>
                 <Smile className="w-5 h-5" />
               </div>
               <div className="p-6">
@@ -805,10 +1055,17 @@ export default function TapFilterLanding() {
                   />
                   <div className="absolute inset-0 bg-gradient-to-t from-sky-900/30 via-transparent to-transparent" />
                   <Sparkles className="absolute top-3 right-3 w-5 h-5 text-white drop-shadow animate-pulse" />
-                  <span className="absolute bottom-2 left-3 text-xs font-bold text-white bg-sky-600/90 px-2 py-1 rounded-md backdrop-blur">স্বচ্ছ ও বিশুদ্ধ পানি</span>
+                  <span className="absolute bottom-2 left-3 text-xs font-bold text-white bg-sky-600/90 px-2 py-1 rounded-md backdrop-blur">
+                    স্বচ্ছ ও বিশুদ্ধ পানি
+                  </span>
                 </div>
                 <ul className="space-y-2 text-sm text-slate-700">
-                  {["সম্পূর্ণ পরিষ্কার ও স্বচ্ছ পানি", "কোনো দুর্গন্ধ বা বাজে স্বাদ নেই", "চামড়া ও চুলের জন্য নিরাপদ", "রান্না ও পান — সবকিছুতেই ভালো"].map((t) => (
+                  {[
+                    "সম্পূর্ণ পরিষ্কার ও স্বচ্ছ পানি",
+                    "কোনো দুর্গন্ধ বা বাজে স্বাদ নেই",
+                    "চামড়া ও চুলের জন্য নিরাপদ",
+                    "রান্না ও পান — সবকিছুতেই ভালো",
+                  ].map((t) => (
                     <li key={t} className="flex items-start gap-2">
                       <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
                       <span>{t}</span>
@@ -829,7 +1086,6 @@ export default function TapFilterLanding() {
             </button>
           </div>
 
-
           {/* GUARANTEE BADGE */}
           <div className="mt-12" data-reveal>
             <div className="relative overflow-hidden rounded-3xl bg-gradient-to-br from-sky-600 via-sky-500 to-cyan-500 text-white p-6 md:p-8 shadow-xl">
@@ -840,18 +1096,31 @@ export default function TapFilterLanding() {
                   <div className="w-24 h-24 md:w-28 md:h-28 rounded-full bg-white text-sky-600 flex items-center justify-center shadow-lg ring-4 ring-white/40 tf-guarantee-pulse">
                     <ShieldCheck className="w-12 h-12 md:w-14 md:h-14" />
                   </div>
-                  <span className="absolute -top-1 -right-1 bg-yellow-400 text-yellow-900 text-[10px] font-extrabold px-2 py-0.5 rounded-full shadow">100%</span>
+                  <span className="absolute -top-1 -right-1 bg-yellow-400 text-yellow-900 text-[10px] font-extrabold px-2 py-0.5 rounded-full shadow">
+                    100%
+                  </span>
                 </div>
                 <div className="text-center md:text-left flex-1">
                   <div className="inline-flex items-center gap-1.5 bg-white/15 backdrop-blur px-3 py-1 rounded-full text-xs font-bold mb-2">
                     <BadgeCheck className="w-3.5 h-3.5" /> আমাদের প্রতিশ্রুতি
                   </div>
-                  <h3 className="text-2xl md:text-3xl font-extrabold">১০০% মানি ব্যাক গ্যারান্টি</h3>
-                  <p className="mt-1.5 text-sm md:text-base text-sky-50">পণ্য পছন্দ না হলে বা কোনো সমস্যা থাকলে ৭ দিনের মধ্যে সম্পূর্ণ টাকা ফেরত। মান ও বিশুদ্ধতার নিশ্চয়তা আমাদের।</p>
+                  <h3 className="text-2xl md:text-3xl font-extrabold">
+                    ১০০% মানি ব্যাক গ্যারান্টি
+                  </h3>
+                  <p className="mt-1.5 text-sm md:text-base text-sky-50">
+                    পণ্য পছন্দ না হলে বা কোনো সমস্যা থাকলে ৭ দিনের মধ্যে
+                    সম্পূর্ণ টাকা ফেরত। মান ও বিশুদ্ধতার নিশ্চয়তা আমাদের।
+                  </p>
                   <div className="mt-3 flex flex-wrap justify-center md:justify-start gap-2 text-[11px] font-bold">
-                    <span className="bg-white/20 backdrop-blur px-2.5 py-1 rounded-full">✓ ৭ দিন রিটার্ন</span>
-                    <span className="bg-white/20 backdrop-blur px-2.5 py-1 rounded-full">✓ ক্যাশ অন ডেলিভারি</span>
-                    <span className="bg-white/20 backdrop-blur px-2.5 py-1 rounded-full">✓ বিশ্বস্ত ব্র্যান্ড</span>
+                    <span className="bg-white/20 backdrop-blur px-2.5 py-1 rounded-full">
+                      ✓ ৭ দিন রিটার্ন
+                    </span>
+                    <span className="bg-white/20 backdrop-blur px-2.5 py-1 rounded-full">
+                      ✓ ক্যাশ অন ডেলিভারি
+                    </span>
+                    <span className="bg-white/20 backdrop-blur px-2.5 py-1 rounded-full">
+                      ✓ বিশ্বস্ত ব্র্যান্ড
+                    </span>
                   </div>
                 </div>
               </div>
@@ -865,11 +1134,14 @@ export default function TapFilterLanding() {
 
       {/* PRICING */}
       <section id="pricing" className="py-14 md:py-20">
-
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-10" data-reveal>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-sky-900">প্যাকেজ ও কম্বো অফার</h2>
-            <p className="mt-2 text-slate-600">যত বেশি নিবেন — তত বেশি ফ্রি গিফট! সীমিত সময়ের অফার।</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-sky-900">
+              প্যাকেজ ও কম্বো অফার
+            </h2>
+            <p className="mt-2 text-slate-600">
+              যত বেশি নিবেন — তত বেশি ফ্রি গিফট! সীমিত সময়ের অফার।
+            </p>
           </div>
 
           <div className="relative">
@@ -886,14 +1158,19 @@ export default function TapFilterLanding() {
             <button
               type="button"
               aria-label="পরের প্যাকেজ"
-              onClick={() => scrollTierTo(Math.min(tiers.length - 1, activeTierIdx + 1))}
+              onClick={() =>
+                scrollTierTo(Math.min(tiers.length - 1, activeTierIdx + 1))
+              }
               disabled={activeTierIdx >= tiers.length - 1}
               className="tf-tier-arrow hidden md:inline-flex absolute -right-2 lg:-right-5 top-1/2 -translate-y-1/2 z-10"
             >
               <ChevronRight className="w-5 h-5" />
             </button>
 
-            <div ref={tierScrollRef} className="tf-tier-scroll flex gap-5 md:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth">
+            <div
+              ref={tierScrollRef}
+              className="tf-tier-scroll flex gap-5 md:gap-6 overflow-x-auto snap-x snap-mandatory scroll-smooth"
+            >
               {tiers.map((t, idx) => (
                 <div
                   key={t.pieces}
@@ -936,7 +1213,10 @@ export default function TapFilterLanding() {
                     </div>
                     <ul className="space-y-2">
                       {t.freebies.map((f) => (
-                        <li key={f} className="flex items-start gap-2 text-sm md:text-base text-slate-700">
+                        <li
+                          key={f}
+                          className="flex items-start gap-2 text-sm md:text-base text-slate-700"
+                        >
                           <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
                           <span>{f}</span>
                         </li>
@@ -970,25 +1250,34 @@ export default function TapFilterLanding() {
           </div>
 
           <div className="mt-3 flex justify-center gap-1.5 text-xs text-sky-700 md:hidden">
-            <span className="inline-flex items-center gap-1 bg-sky-50 border border-sky-200 px-3 py-1 rounded-full">← স্লাইড করুন →</span>
+            <span className="inline-flex items-center gap-1 bg-sky-50 border border-sky-200 px-3 py-1 rounded-full">
+              ← স্লাইড করুন →
+            </span>
           </div>
-
 
           <div className="mt-8 text-center" data-reveal>
             <span className="inline-flex items-center gap-2 bg-red-50 text-red-700 border border-red-200 px-4 py-2 rounded-full text-sm font-semibold">
-              <Flame className="w-4 h-4" /> সীমিত সময়ের অফার — স্টক শেষ হওয়ার আগেই অর্ডার করুন!
+              <Flame className="w-4 h-4" /> সীমিত সময়ের অফার — স্টক শেষ হওয়ার
+              আগেই অর্ডার করুন!
             </span>
           </div>
         </div>
       </section>
 
-
       {/* ORDER FORM */}
-      <section id="order" ref={formRef} className="py-14 md:py-20 bg-gradient-to-b from-sky-50 to-white">
+      <section
+        id="order"
+        ref={formRef}
+        className="py-14 md:py-20 bg-gradient-to-b from-sky-50 to-white"
+      >
         <div className="max-w-3xl mx-auto px-4">
           <div className="text-center mb-8" data-reveal>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-sky-900">অর্ডার ফর্ম</h2>
-            <p className="mt-2 text-slate-600">নিচের ফর্মটি পূরণ করে সাবমিট করুন — আমরা দ্রুত যোগাযোগ করব।</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-sky-900">
+              অর্ডার ফর্ম
+            </h2>
+            <p className="mt-2 text-slate-600">
+              নিচের ফর্মটি পূরণ করে সাবমিট করুন — আমরা দ্রুত যোগাযোগ করব।
+            </p>
           </div>
 
           <div className="tf-card rounded-3xl p-6 md:p-8" data-reveal>
@@ -996,7 +1285,14 @@ export default function TapFilterLanding() {
               <div className="tf-pop text-center py-8">
                 <div className="mx-auto w-20 h-20 rounded-full bg-emerald-100 flex items-center justify-center mb-4">
                   <svg viewBox="0 0 52 52" className="w-12 h-12">
-                    <circle cx="26" cy="26" r="24" fill="none" stroke="#10b981" strokeWidth="3" />
+                    <circle
+                      cx="26"
+                      cy="26"
+                      r="24"
+                      fill="none"
+                      stroke="#10b981"
+                      strokeWidth="3"
+                    />
                     <path
                       d="M14 27 L23 36 L39 18"
                       fill="none"
@@ -1004,19 +1300,32 @@ export default function TapFilterLanding() {
                       strokeWidth="4"
                       strokeLinecap="round"
                       strokeLinejoin="round"
-                      style={{ strokeDasharray: 50, strokeDashoffset: 50, animation: "tf-check-draw .6s .2s ease-out forwards" }}
+                      style={{
+                        strokeDasharray: 50,
+                        strokeDashoffset: 50,
+                        animation: "tf-check-draw .6s .2s ease-out forwards",
+                      }}
                     />
                   </svg>
                 </div>
                 <div className="flex items-center justify-center gap-2 text-emerald-600 mb-2">
                   <PartyPopper className="w-6 h-6" />
-                  <h3 className="text-2xl md:text-3xl font-extrabold">ধন্যবাদ!</h3>
+                  <h3 className="text-2xl md:text-3xl font-extrabold">
+                    ধন্যবাদ!
+                  </h3>
                 </div>
-                <p className="text-lg font-semibold text-slate-800">আপনার অর্ডার পাওয়া গেছে ✅</p>
-                <p className="mt-2 text-sm text-slate-600">
-                  অর্ডার আইডি: <span className="font-mono font-bold text-sky-700">{success.orderId}</span>
+                <p className="text-lg font-semibold text-slate-800">
+                  আপনার অর্ডার পাওয়া গেছে ✅
                 </p>
-                <p className="mt-1 text-sm text-slate-600">আমরা শীঘ্রই আপনার নম্বরে যোগাযোগ করব ইনশাআল্লাহ।</p>
+                <p className="mt-2 text-sm text-slate-600">
+                  অর্ডার আইডি:{" "}
+                  <span className="font-mono font-bold text-sky-700">
+                    {success.orderId}
+                  </span>
+                </p>
+                <p className="mt-1 text-sm text-slate-600">
+                  আমরা শীঘ্রই আপনার নম্বরে যোগাযোগ করব ইনশাআল্লাহ।
+                </p>
                 <button
                   type="button"
                   onClick={() => setSuccess(null)}
@@ -1029,7 +1338,9 @@ export default function TapFilterLanding() {
               <form onSubmit={handleSubmit} noValidate>
                 {/* Package selector — 3 per row */}
                 <div className="mb-5">
-                  <label className="tf-label mb-2 block">প্যাকেজ নির্বাচন করুন</label>
+                  <label className="tf-label mb-2 block">
+                    প্যাকেজ নির্বাচন করুন
+                  </label>
                   <div className="grid grid-cols-3 gap-2 sm:gap-3">
                     {tiers.map((t) => {
                       const selected = t.pieces === tierPieces;
@@ -1055,8 +1366,12 @@ export default function TapFilterLanding() {
                             {t.pieces} পিস প্যাকেজ
                           </div>
                           <div className="mt-1.5 flex items-baseline gap-1 flex-wrap">
-                            <span className="text-[10px] sm:text-xs text-slate-400 line-through">৳{regular.toLocaleString("en-US")}</span>
-                            <span className="text-sm sm:text-base font-extrabold text-orange-600">৳{t.price.toLocaleString("en-US")}</span>
+                            <span className="text-[10px] sm:text-xs text-slate-400 line-through">
+                              ৳{regular.toLocaleString("en-US")}
+                            </span>
+                            <span className="text-sm sm:text-base font-extrabold text-orange-600">
+                              ৳{t.price.toLocaleString("en-US")}
+                            </span>
                           </div>
                         </button>
                       );
@@ -1065,20 +1380,27 @@ export default function TapFilterLanding() {
                 </div>
                 <div className="grid gap-4">
                   <div>
-                    <label className="tf-label">নাম <span className="text-red-500">*</span></label>
+                    <label className="tf-label">
+                      নাম <span className="text-red-500">*</span>
+                    </label>
                     <input
                       type="text"
                       className={`tf-input ${errors.name ? "tf-input-err" : ""}`}
                       placeholder="আপনার পূর্ণ নাম"
                       value={name}
                       onFocus={handleFormFieldInteract}
-                      onChange={(e) => { handleFormFieldInteract(); setName(e.target.value); }}
+                      onChange={(e) => {
+                        handleFormFieldInteract();
+                        setName(e.target.value);
+                      }}
                       maxLength={80}
                     />
                     {errors.name && <div className="tf-err">{errors.name}</div>}
                   </div>
                   <div>
-                    <label className="tf-label">মোবাইল নম্বর <span className="text-red-500">*</span></label>
+                    <label className="tf-label">
+                      মোবাইল নম্বর <span className="text-red-500">*</span>
+                    </label>
                     <input
                       type="tel"
                       inputMode="numeric"
@@ -1086,34 +1408,56 @@ export default function TapFilterLanding() {
                       placeholder="০১XXXXXXXXX"
                       value={mobile}
                       onFocus={handleFormFieldInteract}
-                      onChange={(e) => { handleFormFieldInteract(); setMobile(e.target.value); }}
+                      onChange={(e) => {
+                        handleFormFieldInteract();
+                        setMobile(e.target.value);
+                      }}
                       maxLength={14}
                     />
-                    {errors.mobile && <div className="tf-err">{errors.mobile}</div>}
+                    {errors.mobile && (
+                      <div className="tf-err">{errors.mobile}</div>
+                    )}
                   </div>
                   <div>
-                    <label className="tf-label">সম্পূর্ণ ঠিকানা <span className="text-red-500">*</span></label>
+                    <label className="tf-label">
+                      সম্পূর্ণ ঠিকানা <span className="text-red-500">*</span>
+                    </label>
                     <textarea
                       className={`tf-input ${errors.address ? "tf-input-err" : ""}`}
                       rows={2}
                       placeholder="বাসা, রোড, থানা, জেলা"
                       value={address}
                       onFocus={handleFormFieldInteract}
-                      onChange={(e) => { handleFormFieldInteract(); setAddress(e.target.value); }}
+                      onChange={(e) => {
+                        handleFormFieldInteract();
+                        setAddress(e.target.value);
+                      }}
                       maxLength={300}
                     />
-                    {errors.address && <div className="tf-err">{errors.address}</div>}
+                    {errors.address && (
+                      <div className="tf-err">{errors.address}</div>
+                    )}
                   </div>
                 </div>
 
                 {/* Delivery Area */}
                 {dhakaCfg.enabled && (
                   <div className="mt-5">
-                    <label className="tf-label mb-2 block">ডেলিভারি এরিয়া</label>
+                    <label className="tf-label mb-2 block">
+                      ডেলিভারি এরিয়া
+                    </label>
                     <div className="grid grid-cols-2 gap-2 sm:gap-3">
                       {[
-                        { value: "inside" as const, label: "ঢাকার মধ্যে", charge: dhakaCfg.inside },
-                        { value: "outside" as const, label: "ঢাকার বাইরে", charge: dhakaCfg.outside },
+                        {
+                          value: "inside" as const,
+                          label: "ঢাকার মধ্যে",
+                          charge: dhakaCfg.inside,
+                        },
+                        {
+                          value: "outside" as const,
+                          label: "ঢাকার বাইরে",
+                          charge: dhakaCfg.outside,
+                        },
                       ].map((opt) => {
                         const sel = deliveryArea === opt.value;
                         return (
@@ -1122,12 +1466,18 @@ export default function TapFilterLanding() {
                             key={opt.value}
                             onClick={() => setDeliveryArea(opt.value)}
                             className={`rounded-xl border-2 p-3 text-left transition-all ${
-                              sel ? "border-orange-500 bg-orange-50 shadow-md" : "border-slate-200 bg-white hover:border-orange-300"
+                              sel
+                                ? "border-orange-500 bg-orange-50 shadow-md"
+                                : "border-slate-200 bg-white hover:border-orange-300"
                             }`}
                             aria-pressed={sel}
                           >
-                            <div className="text-sm font-semibold text-slate-800">{opt.label}</div>
-                            <div className="text-xs text-orange-600 font-bold mt-0.5">ডেলিভারি চার্জ ৳{opt.charge}</div>
+                            <div className="text-sm font-semibold text-slate-800">
+                              {opt.label}
+                            </div>
+                            <div className="text-xs text-orange-600 font-bold mt-0.5">
+                              ডেলিভারি চার্জ ৳{opt.charge}
+                            </div>
                           </button>
                         );
                       })}
@@ -1138,8 +1488,12 @@ export default function TapFilterLanding() {
                 {/* Quantity stepper */}
                 <div className="mt-4 rounded-2xl border-2 border-sky-200 bg-white p-3 flex items-center justify-between">
                   <div>
-                    <div className="text-sm font-semibold text-slate-800">পরিমাণ (কতটি প্যাকেজ)</div>
-                    <div className="text-xs text-slate-500 mt-0.5">{selectedTier.pieces} পিস প্যাকেজ × {BengaliNum(quantity)}</div>
+                    <div className="text-sm font-semibold text-slate-800">
+                      পরিমাণ (কতটি প্যাকেজ)
+                    </div>
+                    <div className="text-xs text-slate-500 mt-0.5">
+                      {selectedTier.pieces} পিস প্যাকেজ × {BengaliNum(quantity)}
+                    </div>
                   </div>
                   <div className="flex items-center gap-2">
                     <button
@@ -1151,7 +1505,9 @@ export default function TapFilterLanding() {
                     >
                       −
                     </button>
-                    <span className="min-w-[2.5rem] text-center text-lg font-extrabold text-sky-900">{BengaliNum(quantity)}</span>
+                    <span className="min-w-[2.5rem] text-center text-lg font-extrabold text-sky-900">
+                      {BengaliNum(quantity)}
+                    </span>
                     <button
                       type="button"
                       onClick={() => setQuantity((q) => Math.min(99, q + 1))}
@@ -1168,26 +1524,43 @@ export default function TapFilterLanding() {
                 <div className="mt-5 rounded-2xl bg-sky-50 border border-sky-200 p-4">
                   <div className="flex justify-between items-center text-sm">
                     <span className="text-slate-700">প্যাকেজ:</span>
-                    <span className="font-semibold text-sky-900">{selectedTier.pieces} পিস × {quantity}</span>
+                    <span className="font-semibold text-sky-900">
+                      {selectedTier.pieces} পিস × {quantity}
+                    </span>
                   </div>
                   <div className="mt-1.5 flex items-start justify-between text-xs text-emerald-700">
-                    <span className="flex items-center gap-1"><Gift className="w-3.5 h-3.5" /> ফ্রি গিফট:</span>
-                    <span className="text-right font-medium">{selectedTier.freebies.join(", ")}</span>
+                    <span className="flex items-center gap-1">
+                      <Gift className="w-3.5 h-3.5" /> ফ্রি গিফট:
+                    </span>
+                    <span className="text-right font-medium">
+                      {selectedTier.freebies.join(", ")}
+                    </span>
                   </div>
                   <div className="mt-2 flex justify-between items-center text-sm">
                     <span className="text-slate-700">সাবটোটাল:</span>
-                    <span className="font-semibold text-sky-900">৳ {subtotal.toLocaleString("en-US")}</span>
+                    <span className="font-semibold text-sky-900">
+                      ৳ {subtotal.toLocaleString("en-US")}
+                    </span>
                   </div>
                   <div className="mt-1 flex justify-between items-center text-sm">
-                    <span className="text-slate-700">ডেলিভারি চার্জ ({deliveryArea === "inside" ? "ঢাকার মধ্যে" : "ঢাকার বাইরে"}):</span>
-                    <span className="font-semibold text-sky-900">৳ {deliveryCharge.toLocaleString("en-US")}</span>
+                    <span className="text-slate-700">
+                      ডেলিভারি চার্জ (
+                      {deliveryArea === "inside"
+                        ? "ঢাকার মধ্যে"
+                        : "ঢাকার বাইরে"}
+                      ):
+                    </span>
+                    <span className="font-semibold text-sky-900">
+                      ৳ {deliveryCharge.toLocaleString("en-US")}
+                    </span>
                   </div>
                   <div className="mt-3 pt-3 border-t border-sky-200 flex justify-between items-center">
                     <span className="font-bold text-slate-800">সর্বমোট:</span>
-                    <span className="text-2xl font-extrabold text-orange-600">৳ {grandTotal.toLocaleString("en-US")}</span>
+                    <span className="text-2xl font-extrabold text-orange-600">
+                      ৳ {grandTotal.toLocaleString("en-US")}
+                    </span>
                   </div>
                 </div>
-
 
                 {errors.submit && (
                   <div className="mt-4 rounded-xl bg-red-50 border border-red-200 p-3 text-sm text-red-700 font-medium">
@@ -1202,7 +1575,8 @@ export default function TapFilterLanding() {
                 >
                   {submitting ? (
                     <>
-                      <Loader2 className="w-5 h-5 animate-spin" /> পাঠানো হচ্ছে...
+                      <Loader2 className="w-5 h-5 animate-spin" /> পাঠানো
+                      হচ্ছে...
                     </>
                   ) : (
                     <>
@@ -1211,7 +1585,8 @@ export default function TapFilterLanding() {
                   )}
                 </button>
                 <p className="mt-3 text-center text-xs text-slate-500">
-                  সাবমিট করার সাথে সাথে আপনার অর্ডার সেভ হবে এবং আমরা যোগাযোগ করব।
+                  সাবমিট করার সাথে সাথে আপনার অর্ডার সেভ হবে এবং আমরা যোগাযোগ
+                  করব।
                 </p>
               </form>
             )}
@@ -1223,12 +1598,21 @@ export default function TapFilterLanding() {
       <section className="py-14 md:py-20 bg-gradient-to-b from-white to-sky-50">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-10" data-reveal>
-            <h2 className="text-3xl md:text-4xl font-extrabold text-sky-900">কেন Water faucet tap filter?</h2>
-            <p className="mt-2 text-slate-600">দৈনন্দিন ব্যবহারের জন্য সেরা সমাধান</p>
+            <h2 className="text-3xl md:text-4xl font-extrabold text-sky-900">
+              কেন Water faucet tap filter?
+            </h2>
+            <p className="mt-2 text-slate-600">
+              দৈনন্দিন ব্যবহারের জন্য সেরা সমাধান
+            </p>
           </div>
           <div className="grid md:grid-cols-3 gap-5">
             {benefits.map((b, i) => (
-              <div key={b.title} data-reveal className="tf-card rounded-2xl p-6 text-center" style={{ transitionDelay: `${i * 120}ms` }}>
+              <div
+                key={b.title}
+                data-reveal
+                className="tf-card rounded-2xl p-6 text-center"
+                style={{ transitionDelay: `${i * 120}ms` }}
+              >
                 <div className="mx-auto w-14 h-14 rounded-2xl bg-gradient-to-br from-sky-400 to-cyan-500 flex items-center justify-center mb-4 shadow-md">
                   <b.icon className="w-7 h-7 text-white" />
                 </div>
@@ -1244,18 +1628,45 @@ export default function TapFilterLanding() {
       <section className="py-14 md:py-20 bg-gradient-to-b from-white to-sky-50">
         <div className="max-w-6xl mx-auto px-4">
           <div className="text-center mb-10" data-reveal>
-            <span className="inline-block px-3 py-1 rounded-full bg-sky-100 text-sky-700 text-xs font-bold tracking-wide">সহজ ইনস্টলেশন</span>
-            <h2 className="mt-3 text-3xl md:text-4xl font-extrabold text-sky-900">কীভাবে ব্যবহার করবেন?</h2>
-            <p className="mt-2 text-slate-600">মাত্র ৩টি সহজ ধাপে ইনস্টল করুন — কোনো টুলস বা টেকনিশিয়ান লাগবে না!</p>
+            <span className="inline-block px-3 py-1 rounded-full bg-sky-100 text-sky-700 text-xs font-bold tracking-wide">
+              সহজ ইনস্টলেশন
+            </span>
+            <h2 className="mt-3 text-3xl md:text-4xl font-extrabold text-sky-900">
+              কীভাবে ব্যবহার করবেন?
+            </h2>
+            <p className="mt-2 text-slate-600">
+              মাত্র ৩টি সহজ ধাপে ইনস্টল করুন — কোনো টুলস বা টেকনিশিয়ান লাগবে
+              না!
+            </p>
           </div>
 
           <div className="grid gap-6 md:grid-cols-3 relative">
             {[
-              { icon: Wrench, title: "পুরনো ফিল্টার/অ্যারেটর খুলুন", desc: "আপনার ট্যাপের সামনের অংশ (aerator) হাত দিয়েই ঘুরিয়ে সহজে খুলে ফেলুন।", step: "১" },
-              { icon: Droplets, title: "Water faucet tap filter লাগান", desc: "নতুন Water faucet tap filterটি ট্যাপের মুখে বসিয়ে হালকাভাবে ঘুরিয়ে টাইট করে নিন।", step: "২" },
-              { icon: Sparkles, title: "বিশুদ্ধ পানি উপভোগ করুন", desc: "ট্যাপ চালু করুন — ময়লা, বালু ও অপদ্রব্য মুক্ত পরিষ্কার পানি সরাসরি!", step: "৩" },
+              {
+                icon: Wrench,
+                title: "পুরনো ফিল্টার/অ্যারেটর খুলুন",
+                desc: "আপনার ট্যাপের সামনের অংশ (aerator) হাত দিয়েই ঘুরিয়ে সহজে খুলে ফেলুন।",
+                step: "১",
+              },
+              {
+                icon: Droplets,
+                title: "Water faucet tap filter লাগান",
+                desc: "নতুন Water faucet tap filterটি ট্যাপের মুখে বসিয়ে হালকাভাবে ঘুরিয়ে টাইট করে নিন।",
+                step: "২",
+              },
+              {
+                icon: Sparkles,
+                title: "বিশুদ্ধ পানি উপভোগ করুন",
+                desc: "ট্যাপ চালু করুন — ময়লা, বালু ও অপদ্রব্য মুক্ত পরিষ্কার পানি সরাসরি!",
+                step: "৩",
+              },
             ].map((s, i) => (
-              <div key={i} data-reveal style={{ transitionDelay: `${i * 100}ms` }} className="relative rounded-2xl bg-white ring-1 ring-sky-100 shadow-sm p-6 pt-10 hover:shadow-lg hover:-translate-y-1 transition-all">
+              <div
+                key={i}
+                data-reveal
+                style={{ transitionDelay: `${i * 100}ms` }}
+                className="relative rounded-2xl bg-white ring-1 ring-sky-100 shadow-sm p-6 pt-10 hover:shadow-lg hover:-translate-y-1 transition-all"
+              >
                 <div className="absolute -top-5 left-6 w-11 h-11 rounded-full bg-gradient-to-br from-sky-500 to-cyan-500 text-white flex items-center justify-center font-extrabold text-lg shadow-lg ring-4 ring-white">
                   {s.step}
                 </div>
@@ -1263,14 +1674,17 @@ export default function TapFilterLanding() {
                   <s.icon className="w-7 h-7 text-sky-600" />
                 </div>
                 <h3 className="text-lg font-bold text-sky-900">{s.title}</h3>
-                <p className="mt-2 text-sm text-slate-600 leading-relaxed">{s.desc}</p>
+                <p className="mt-2 text-sm text-slate-600 leading-relaxed">
+                  {s.desc}
+                </p>
               </div>
             ))}
           </div>
 
           <div className="mt-8 text-center text-sm text-slate-500" data-reveal>
             <Clock className="inline w-4 h-4 mr-1 -mt-0.5" />
-            মোট সময়: <span className="font-bold text-sky-700">১ মিনিটেরও কম!</span>
+            মোট সময়:{" "}
+            <span className="font-bold text-sky-700">১ মিনিটেরও কম!</span>
           </div>
         </div>
       </section>
@@ -1282,8 +1696,12 @@ export default function TapFilterLanding() {
             <span className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-sky-100 text-sky-700 text-xs font-bold">
               <HelpCircle className="w-3.5 h-3.5" /> সাধারণ প্রশ্ন
             </span>
-            <h2 className="mt-3 text-3xl md:text-4xl font-extrabold text-sky-900">আপনার যা জানা দরকার</h2>
-            <p className="mt-2 text-slate-600">অর্ডার করার আগে কমন প্রশ্নগুলোর উত্তর দেখে নিন</p>
+            <h2 className="mt-3 text-3xl md:text-4xl font-extrabold text-sky-900">
+              আপনার যা জানা দরকার
+            </h2>
+            <p className="mt-2 text-slate-600">
+              অর্ডার করার আগে কমন প্রশ্নগুলোর উত্তর দেখে নিন
+            </p>
           </div>
 
           <div className="space-y-3">
@@ -1320,7 +1738,9 @@ export default function TapFilterLanding() {
                     <span className="flex-shrink-0 w-8 h-8 rounded-full bg-gradient-to-br from-sky-500 to-cyan-500 text-white font-bold text-sm flex items-center justify-center shadow">
                       {BengaliNum(i + 1)}
                     </span>
-                    <span className="font-bold text-sky-900 text-sm md:text-base pt-1">{item.q}</span>
+                    <span className="font-bold text-sky-900 text-sm md:text-base pt-1">
+                      {item.q}
+                    </span>
                   </div>
                   <span className="flex-shrink-0 w-8 h-8 rounded-full bg-sky-50 text-sky-600 flex items-center justify-center group-open:bg-sky-500 group-open:text-white transition-all group-open:rotate-180">
                     <ChevronDown className="w-4 h-4" />
@@ -1335,8 +1755,15 @@ export default function TapFilterLanding() {
             ))}
           </div>
 
-           <div className="mt-8 text-center text-sm text-slate-600" data-reveal>
-             আরও প্রশ্ন? <a href="tel:01708356800" className="font-bold text-sky-700 hover:underline">কল করুন — 01708356800</a>&nbsp;
+          <div className="mt-8 text-center text-sm text-slate-600" data-reveal>
+            আরও প্রশ্ন?{" "}
+            <a
+              href="tel:01708356800"
+              className="font-bold text-sky-700 hover:underline"
+            >
+              কল করুন — 01708356800
+            </a>
+            &nbsp;
           </div>
         </div>
       </section>
@@ -1345,11 +1772,26 @@ export default function TapFilterLanding() {
       <section className="py-10 md:py-14">
         <div className="max-w-4xl mx-auto px-4" data-reveal>
           <div className="relative rounded-3xl overflow-hidden bg-gradient-to-r from-sky-600 via-cyan-500 to-sky-700 text-white p-8 md:p-10 text-center shadow-2xl">
-            <div className="absolute inset-0 opacity-20" style={{ backgroundImage: "radial-gradient(circle at 20% 20%, #fff 0, transparent 40%), radial-gradient(circle at 80% 60%, #fff 0, transparent 40%)" }} />
+            <div
+              className="absolute inset-0 opacity-20"
+              style={{
+                backgroundImage:
+                  "radial-gradient(circle at 20% 20%, #fff 0, transparent 40%), radial-gradient(circle at 80% 60%, #fff 0, transparent 40%)",
+              }}
+            />
             <Droplets className="w-10 h-10 mx-auto mb-3" />
-            <h3 className="text-2xl md:text-3xl font-extrabold">স্বাস্থ্যকর জীবন শুরু হোক বিশুদ্ধ পানি দিয়ে</h3>
-            <p className="mt-2 text-cyan-50 text-sm md:text-base">প্রতিদিনের রান্না, পান আর ব্যবহার — সব কিছুতে নিরাপদ পানি নিশ্চিত করুন।</p>
-            <button type="button" onClick={() => scrollToForm()} className="tf-cta mt-5 inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold">
+            <h3 className="text-2xl md:text-3xl font-extrabold">
+              স্বাস্থ্যকর জীবন শুরু হোক বিশুদ্ধ পানি দিয়ে
+            </h3>
+            <p className="mt-2 text-cyan-50 text-sm md:text-base">
+              প্রতিদিনের রান্না, পান আর ব্যবহার — সব কিছুতে নিরাপদ পানি নিশ্চিত
+              করুন।
+            </p>
+            <button
+              type="button"
+              onClick={() => scrollToForm()}
+              className="tf-cta mt-5 inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold"
+            >
               <Package className="w-5 h-5" /> এখনই অর্ডার করুন
             </button>
           </div>
@@ -1357,22 +1799,49 @@ export default function TapFilterLanding() {
       </section>
 
       <div className="pb-28 md:pb-16 text-center text-xs text-slate-500">
-        Developed by <a href="https://wa.me/8801560007230?text=Hello%20HaqPlus%20IT!%20I%20saw%20Griha%20Nova%20website%20and%20want%20to%20build%20a%20project." target="_blank" rel="noopener noreferrer" className="underline hover:text-sky-700 font-semibold">Haq Plus IT</a>
+        Developed by{" "}
+        <a
+          href="https://wa.me/8801560007230?text=Hello%20HaqPlus%20IT!%20I%20saw%20Griha%20Nova%20website%20and%20want%20to%20build%20a%20project."
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-sky-700 font-semibold animate-pulse hover:animate-none inline-block"
+        >
+          Haq Plus IT
+        </a>
       </div>
 
       {/* STICKY BOTTOM CTA */}
       <div className="fixed bottom-0 inset-x-0 z-50 md:bottom-4">
         <div className="mx-auto max-w-2xl md:rounded-2xl bg-white/95 backdrop-blur border-t md:border border-sky-200 shadow-2xl px-3 py-2.5 flex items-center gap-2">
-          <a href={`tel:${phone}`} aria-label="Call" className="w-11 h-11 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center hover:bg-sky-200">
+          <a
+            href={`tel:${phone}`}
+            aria-label="Call"
+            className="w-11 h-11 rounded-full bg-sky-100 text-sky-700 flex items-center justify-center hover:bg-sky-200"
+          >
             <Phone className="w-5 h-5" />
           </a>
-          <a href={waHref} target="_blank" rel="noopener noreferrer" aria-label="WhatsApp" className="w-11 h-11 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center hover:bg-emerald-200">
+          <a
+            href={waHref}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="WhatsApp"
+            className="w-11 h-11 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center hover:bg-emerald-200"
+          >
             <MessageCircle className="w-5 h-5" />
           </a>
-          <button type="button" onClick={handleFloatingCta} disabled={submitting} className="tf-cta flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-full font-bold text-sm disabled:opacity-70">
-            <Flame className="w-4 h-4" /> {submitting ? "অর্ডার হচ্ছে..." : isFormFilled() ? "অর্ডার কনফার্ম করুন" : "এখনই অর্ডার করুন"}
+          <button
+            type="button"
+            onClick={handleFloatingCta}
+            disabled={submitting}
+            className="tf-cta flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-full font-bold text-sm disabled:opacity-70"
+          >
+            <Flame className="w-4 h-4" />{" "}
+            {submitting
+              ? "অর্ডার হচ্ছে..."
+              : isFormFilled()
+                ? "অর্ডার কনফার্ম করুন"
+                : "এখনই অর্ডার করুন"}
           </button>
-
         </div>
       </div>
     </div>
