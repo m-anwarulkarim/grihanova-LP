@@ -47,8 +47,16 @@ const trackAddToCart = (name: string, price: number, currency: string) => {
     (window as any).trackEvent('AddToCart', { content_name: name, value: price, currency });
   }
 };
-const trackPurchase = (a: any, b: any, c: any, d: any, e: any) => {};
-const trackViewContent = (a: any, b: any, c: any, d: any) => {};
+const trackPurchase = (price: number, currency: string) => {
+  if (typeof window !== 'undefined' && (window as any).trackEvent) {
+    (window as any).trackEvent('Purchase', { value: price, currency });
+  }
+};
+const trackViewContent = (id: string, name: string, price: number, currency: string) => {
+  if (typeof window !== 'undefined' && (window as any).trackEvent) {
+    (window as any).trackEvent('ViewContent', { content_name: name, value: price, currency });
+  }
+};
 const imgBefore = "/lp/tap-filter/before-poster.webp";
 const imgAfter = "/lp/tap-filter/after-poster.webp";
 
@@ -459,6 +467,10 @@ export default function TapFilterLanding() {
 
   const scrollToForm = (pieces?: number) => {
     if (pieces) setTierPieces(pieces);
+    const tierToTrack = pieces ? PRODUCT_TIERS.find(t => t.pieces === pieces) : selectedTier;
+    if (tierToTrack) {
+      fireAddToCart(tierToTrack.pieces, tierToTrack.price);
+    }
     setTimeout(() => {
       formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
     }, 30);
@@ -653,7 +665,7 @@ export default function TapFilterLanding() {
             </span>
             <h1 className="mt-5 text-4xl md:text-6xl font-extrabold leading-tight drop-shadow-xl">
               ১০০% বিশুদ্ধ পানির নিশ্চয়তায় <br className="hidden md:block"/>
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-teal-200">অ্যাডভান্সড ট্যাপ ফিল্টার</span>
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-teal-200">প্রিমিয়াম ট্যাপ ফিল্টার</span>
             </h1>
             <p className="mt-5 text-lg md:text-xl text-cyan-50 font-medium leading-relaxed max-w-lg">
               ক্ষতিকর আয়রন, জীবাণু ও দুর্গন্ধ দূর করে আপনার পরিবারকে দিন সম্পূর্ণ নিরাপদ পানির গ্যারান্টি। পানি ফোটানোর ঝামেলা এবার ভুলে যান!
