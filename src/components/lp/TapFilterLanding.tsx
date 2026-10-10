@@ -852,11 +852,11 @@ export default function TapFilterLanding() {
 
           {/* Desktop Nav Links */}
           <nav className="hidden md:flex flex-1 justify-center items-center gap-7 font-bold text-[#333] text-[15px]">
-            <a href="#hero" className="hover:text-[#f59e0b] transition-colors">হোম</a>
-            <a href="#benefits" className="hover:text-[#f59e0b] transition-colors">উপকারিতা</a>
-            <a href="#pricing" className="hover:text-[#f59e0b] transition-colors">গ্যালারি</a>
-            <a href="#reviews" className="hover:text-[#f59e0b] transition-colors">রিভিউ</a>
-            <a href="#faq" className="hover:text-[#f59e0b] transition-colors">প্রশ্নোত্তর</a>
+            <a href="#hero" onClick={(e) => { e.preventDefault(); document.getElementById('hero')?.scrollIntoView({ behavior: 'smooth' }) }} className="hover:text-[#f59e0b] transition-colors">হোম</a>
+            <a href="#benefits" onClick={(e) => { e.preventDefault(); document.getElementById('benefits')?.scrollIntoView({ behavior: 'smooth' }) }} className="hover:text-[#f59e0b] transition-colors">উপকারিতা</a>
+            <a href="#pricing" onClick={(e) => { e.preventDefault(); document.getElementById('pricing')?.scrollIntoView({ behavior: 'smooth' }) }} className="hover:text-[#f59e0b] transition-colors">গ্যালারি</a>
+            <a href="#reviews" onClick={(e) => { e.preventDefault(); document.getElementById('reviews')?.scrollIntoView({ behavior: 'smooth' }) }} className="hover:text-[#f59e0b] transition-colors">রিভিউ</a>
+            <a href="#faq" onClick={(e) => { e.preventDefault(); document.getElementById('faq')?.scrollIntoView({ behavior: 'smooth' }) }} className="hover:text-[#f59e0b] transition-colors">প্রশ্নোত্তর</a>
           </nav>
           
           {/* Order Button */}
