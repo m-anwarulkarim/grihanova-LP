@@ -184,8 +184,8 @@ img {
 .ann-text-honey {
   color: #fef3c7;
   white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  flex: 1;
+  font-size: 13px;
   font-size: 12px;
 }
 
