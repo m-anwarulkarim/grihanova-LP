@@ -732,7 +732,7 @@ export default function TapFilterLanding() {
 
       // Redirect to Thank You page smoothly
       window.location.href =
-        "/success-order?orderId=" + (result.data?.orderId || "12345");
+        "/success-order?orderId=" + (result.data?.orderId || "12345") + "&value=" + grandTotal;
     } catch (err: any) {
       submitLockRef.current = false;
       const msg =
@@ -917,13 +917,15 @@ export default function TapFilterLanding() {
                     </div>
                   </button>
                 ) : (
-                  <iframe
-                    src="https://www.youtube.com/embed/3tqlGvIhxpA?rel=0&modestbranding=1&playsinline=1&autoplay=1&mute=0&loop=1&playlist=3tqlGvIhxpA&controls=1"
-                    title="Water faucet tap filter — লাইভ ডেমো"
-                    loading="eager"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
+                  <video
+                    src="/lp/tap-filter/IMG_3413.MOV"
+                    autoPlay={true}
+                    muted={false}
+                    loop={true}
+                    playsInline={true}
+                    controls={true}
                     className="absolute inset-0 w-full h-full"
+                    style={{ objectFit: "cover" }}
                   />
                 )}
               </div>
@@ -957,13 +959,15 @@ export default function TapFilterLanding() {
             className="relative rounded-2xl overflow-hidden shadow-2xl ring-4 ring-white/20 bg-black w-full"
             style={{ maxWidth: 360, aspectRatio: "9 / 16" }}
           >
-            <iframe
-              src="https://www.youtube.com/embed/3tqlGvIhxpA?rel=0&modestbranding=1&playsinline=1&autoplay=1&loop=1&playlist=3tqlGvIhxpA"
-              title="Water faucet tap filter — লাইভ ডেমো"
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-              allowFullScreen
+            <video
+              src="/lp/tap-filter/IMG_3413.MOV"
+              autoPlay={true}
+              muted={false}
+              loop={true}
+              playsInline={true}
+              controls={true}
               className="absolute inset-0 w-full h-full"
-              style={{ border: 0 }}
+              style={{ objectFit: "contain" }}
             />
           </div>
         </div>
@@ -976,104 +980,22 @@ export default function TapFilterLanding() {
             <h2 className="text-3xl md:text-4xl font-extrabold text-sky-900">
               পার্থক্য দেখুন নিজেই
             </h2>
-            <p className="mt-2 text-slate-600">
-              সাধারণ ট্যাপের পানি বনাম Water faucet tap filter লাগানোর পরের পানি
+            <p className="mt-4 text-slate-700 text-lg md:text-xl font-medium max-w-3xl mx-auto leading-relaxed">
+              আপনার ট্যাপের পানি দেখতে যতই পরিষ্কার মনে হোক না কেন, তার ভেতরে লুকিয়ে থাকে প্রচুর অদৃশ্য ময়লা ও আয়রন। 
+              <br className="hidden md:block" /> 
+              নিচের ছবিটি দেখুন— ফিল্টার লাগানোর আগে পানি পরিষ্কার মনে হলেও, ব্যবহারের পর ফিল্টারটি কত পরিমাণ ময়লা আটকেছে তা স্পষ্ট!
             </p>
           </div>
 
-          <div className="grid gap-5 md:grid-cols-2 items-stretch relative">
-            {/* Before */}
-            <div
-              data-reveal
-              className="rounded-2xl overflow-hidden bg-gradient-to-b from-amber-50 to-white ring-1 ring-amber-200 shadow-sm"
-            >
-              <div className="bg-amber-500/90 text-white px-5 py-3 flex items-center justify-between">
-                <span className="font-bold text-sm">সাধারণ ট্যাপ (Before)</span>
-                <Frown className="w-5 h-5" />
-              </div>
-              <div className="p-6">
-                <div className="relative aspect-square rounded-xl ring-1 ring-amber-300 overflow-hidden mb-5 group bg-white">
-                  <img
-                    src={imgBefore}
-                    alt="ফিল্টার ছাড়া কলের ঘোলা ও ময়লা পানি — Griha Nova"
-                    width={1200}
-                    height={1200}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-amber-900/40 via-transparent to-transparent" />
-                  <span className="absolute bottom-2 left-3 text-xs font-bold text-white bg-amber-600/90 px-2 py-1 rounded-md backdrop-blur">
-                    ঘোলা ও ময়লা পানি
-                  </span>
-                </div>
-                <ul className="space-y-2 text-sm text-slate-700">
-                  {[
-                    "দৃশ্যমান ময়লা, বালু ও মরিচা",
-                    "দুর্গন্ধ ও অস্বাস্থ্যকর স্বাদ",
-                    "চামড়া ও চুলের ক্ষতি",
-                    "রান্নার পাত্রে দাগ পড়ে",
-                  ].map((t) => (
-                    <li key={t} className="flex items-start gap-2">
-                      <span className="mt-1 w-1.5 h-1.5 rounded-full bg-amber-600 flex-shrink-0" />
-                      <span>{t}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            {/* Arrow (desktop) */}
-            <div className="hidden md:flex absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 pointer-events-none">
-              <div className="w-14 h-14 rounded-full bg-white shadow-lg ring-4 ring-sky-100 flex items-center justify-center">
-                <ArrowRight className="w-6 h-6 text-sky-600" />
-              </div>
-            </div>
-
-            {/* After */}
-            <div
-              data-reveal
-              style={{ transitionDelay: "120ms" }}
-              className="rounded-2xl overflow-hidden bg-gradient-to-b from-sky-50 to-white ring-1 ring-sky-200 shadow-sm"
-            >
-              <div className="bg-gradient-to-r from-sky-500 to-cyan-500 text-white px-5 py-3 flex items-center justify-between">
-                <span className="font-bold text-sm">
-                  Water faucet tap filter (After)
-                </span>
-                <Smile className="w-5 h-5" />
-              </div>
-              <div className="p-6">
-                <div className="relative aspect-square rounded-xl ring-1 ring-sky-300 overflow-hidden mb-5 group bg-white">
-                  <img
-                    src={imgAfter}
-                    alt="ওয়াটার Water faucet tap filter ব্যবহারে বিশুদ্ধ ও নিরাপদ পানি — Griha Nova"
-                    width={1200}
-                    height={1200}
-                    loading="lazy"
-                    decoding="async"
-                    className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-0 bg-gradient-to-t from-sky-900/30 via-transparent to-transparent" />
-                  <Sparkles className="absolute top-3 right-3 w-5 h-5 text-white drop-shadow animate-pulse" />
-                  <span className="absolute bottom-2 left-3 text-xs font-bold text-white bg-sky-600/90 px-2 py-1 rounded-md backdrop-blur">
-                    স্বচ্ছ ও বিশুদ্ধ পানি
-                  </span>
-                </div>
-                <ul className="space-y-2 text-sm text-slate-700">
-                  {[
-                    "সম্পূর্ণ পরিষ্কার ও স্বচ্ছ পানি",
-                    "কোনো দুর্গন্ধ বা বাজে স্বাদ নেই",
-                    "চামড়া ও চুলের জন্য নিরাপদ",
-                    "রান্না ও পান — সবকিছুতেই ভালো",
-                  ].map((t) => (
-                    <li key={t} className="flex items-start gap-2">
-                      <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0 mt-0.5" />
-                      <span>{t}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
+          <div className="flex justify-center" data-reveal>
+            <img 
+              src="/lp/tap-filter/before-after-proof.jpg" 
+              alt="ফিল্টার ব্যবহারের আগে ও পরে"
+              width={800}
+              height={800}
+              loading="lazy"
+              className="w-full max-w-2xl rounded-2xl shadow-2xl ring-4 ring-sky-100 object-cover"
+            />
           </div>
 
           <div className="mt-8 flex justify-center" data-reveal>

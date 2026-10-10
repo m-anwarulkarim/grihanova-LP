@@ -96,7 +96,7 @@ export default function MagicFoamLanding() {
           throw new Error(result.message || "অর্ডার ব্যর্থ হয়েছে");
       }
       
-      window.location.href = "/success-order?orderId=" + (result.data?.orderId || "12345");
+      window.location.href = "/success-order?orderId=" + (result.data?.orderId || "12345") + "&value=" + grandTotal;
     } catch (err: any) {
       setErrors({ submit: err?.message || "অর্ডার পাঠাতে সমস্যা হয়েছে, আবার চেষ্টা করুন" });
       setSubmitting(false);
@@ -183,7 +183,7 @@ export default function MagicFoamLanding() {
             <div className="absolute top-4 right-4 bg-red-500 text-white px-4 py-1.5 rounded-full text-sm font-bold shadow-lg z-10 animate-bounce">
               স্টক সীমিত! 🔥
             </div>
-            <img src="/lp/magic-foam/images/foam-1.jpg" alt="Magic Foam Main" className="w-full aspect-square object-cover rounded-2xl transition-transform duration-700 group-hover:scale-105" />
+            <img src="/lp/magic-foam/images/foam-20pcs-new.jpg" alt="Magic Foam Main" className="w-full aspect-square object-cover rounded-2xl transition-transform duration-700 group-hover:scale-105" />
           </div>
         </div>
       </section>
@@ -229,8 +229,8 @@ export default function MagicFoamLanding() {
             <h2 className="text-3xl md:text-4xl font-extrabold text-slate-900">যেভাবে ম্যাজিকের মতো কাজ করে</h2>
           </div>
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-            <img src="/lp/magic-foam/images/foam-2.png" alt="Usage" className="rounded-2xl shadow-md w-full aspect-square object-cover hover:scale-105 transition-transform" />
-            <img src="/lp/magic-foam/images/foam-3.jpg" alt="Usage" className="rounded-2xl shadow-md w-full aspect-square object-cover hover:scale-105 transition-transform" />
+            <img src="/lp/magic-foam/images/foam-50pcs-new.jpg" alt="Usage" className="rounded-2xl shadow-md w-full aspect-square object-cover hover:scale-105 transition-transform" />
+            <img src="/lp/magic-foam/images/foam-100pcs-new.jpg" alt="Usage" className="rounded-2xl shadow-md w-full aspect-square object-cover hover:scale-105 transition-transform" />
             <img src="/lp/magic-foam/images/foam-4.jpg" alt="Usage" className="rounded-2xl shadow-md w-full aspect-square object-cover hover:scale-105 transition-transform" />
             <img src="/lp/magic-foam/images/foam-5.png" alt="Usage" className="rounded-2xl shadow-md w-full aspect-square object-cover hover:scale-105 transition-transform" />
           </div>
