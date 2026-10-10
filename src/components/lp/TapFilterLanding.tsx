@@ -919,7 +919,7 @@ export default function TapFilterLanding() {
                   aria-label="Play video"
                 >
                   <img
-                    src="https://i.ytimg.com/vi/3tqlGvIhxpA/hqdefault.jpg"
+                    src="https://i.ytimg.com/vi/lQRSA9Gtu48/hqdefault.jpg"
                     alt="Tap Filter Demo"
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
@@ -931,7 +931,7 @@ export default function TapFilterLanding() {
                 </button>
               ) : (
                 <iframe
-                  src="https://www.youtube.com/embed/JdIvHLqJCQU?autoplay=1&mute=0&loop=1&playlist=JdIvHLqJCQU"
+                  src="https://www.youtube.com/embed/lQRSA9Gtu48?autoplay=1&mute=0&loop=1&playlist=lQRSA9Gtu48"
                   title="Tap Filter Demo Video"
                   frameBorder="0"
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
@@ -994,7 +994,7 @@ export default function TapFilterLanding() {
             style={{ maxWidth: 360, aspectRatio: "9 / 16" }}
           >
             <iframe
-              src="https://www.youtube.com/embed/JdIvHLqJCQU?autoplay=1&mute=0&loop=1&playlist=JdIvHLqJCQU"
+              src="https://www.youtube.com/embed/lQRSA9Gtu48?autoplay=1&mute=0&loop=1&playlist=lQRSA9Gtu48"
               title="Tap Filter Demo Video"
               frameBorder="0"
               allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
