@@ -771,8 +771,7 @@ export default function TapFilterLanding() {
         .tf-bounce { animation: tf-bounce 1.6s ease-in-out infinite; }
         @keyframes tf-pulse { 0%,100%{ box-shadow: 0 0 0 0 rgba(56,189,248,.6);} 50%{ box-shadow: 0 0 0 14px rgba(56,189,248,0);} }
         .tf-pulse { animation: tf-pulse 2s ease-out infinite; }
-        [data-reveal] { opacity: 0; transform: translateY(24px); transition: opacity .7s ease, transform .7s ease; }
-        [data-reveal].tf-in { opacity:1; transform: translateY(0); }
+        /* Animations disabled for faster loading */
         .tf-card { background: linear-gradient(180deg, rgba(255,255,255,.9), rgba(240,249,255,.9)); backdrop-filter: blur(6px); border: 1px solid rgba(56,189,248,.25); box-shadow: 0 10px 30px -12px rgba(2,132,199,.25); transition: transform .3s ease, box-shadow .3s ease; }
         .tf-card:hover { transform: translateY(-6px); box-shadow: 0 18px 40px -12px rgba(2,132,199,.4); }
         .tf-card-best { background: linear-gradient(180deg, #fff7ed, #fff); border: 2px solid #f97316; box-shadow: 0 20px 40px -10px rgba(249,115,22,.35); }
