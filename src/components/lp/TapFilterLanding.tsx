@@ -1728,33 +1728,35 @@ export default function TapFilterLanding() {
         </a>
       </div>
 
-      {/* STICKY BOTTOM CTA */}
-      <div className="fixed bottom-0 inset-x-0 z-50 md:bottom-4">
-        <div className="mx-auto max-w-2xl md:rounded-2xl bg-white/95 backdrop-blur border-t md:border border-sky-200 shadow-2xl px-3 py-2.5 flex items-center gap-2">
+      {/* Floating Action Buttons (Animated WhatsApp & Sticky Order Now) */}
+      <div className="floating-actions-container">
+        <a
+          href={waHref}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="floating-wa-btn"
+          aria-label="WhatsApp Support"
+        >
+          <span className="wa-pulse-ring"></span>
+          <MessageCircle className="w-7 h-7 mb-0.5" />
+        </a>
 
-          <a
-            href={waHref}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label="WhatsApp"
-            className="w-11 h-11 rounded-full bg-emerald-100 text-emerald-700 flex items-center justify-center hover:bg-emerald-200"
-          >
-            <MessageCircle className="w-5 h-5" />
-          </a>
-          <button
-            type="button"
-            onClick={handleFloatingCta}
-            disabled={submitting}
-            className="tf-cta flex-1 inline-flex items-center justify-center gap-2 px-4 py-3 rounded-full font-bold text-sm disabled:opacity-70"
-          >
-            <Flame className="w-4 h-4" />{" "}
+        <button
+          type="button"
+          onClick={handleFloatingCta}
+          disabled={submitting}
+          className="floating-order-btn"
+          style={{ border: "none", cursor: "pointer", fontFamily: "inherit" }}
+        >
+          <Flame className="w-5 h-5" />
+          <span>
             {submitting
               ? "অর্ডার হচ্ছে..."
               : isFormFilled()
                 ? "অর্ডার কনফার্ম করুন"
-                : "এখনই অর্ডার করুন"}
-          </button>
-        </div>
+                : "অর্ডার করুন"}
+          </span>
+        </button>
       </div>
     </div>
   );
