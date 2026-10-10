@@ -918,7 +918,7 @@ export default function TapFilterLanding() {
                   </button>
                 ) : (
                   <video
-                    src="/lp/tap-filter/IMG_3413.MOV"
+                    src="/lp/tap-filter/IMG_3413.mp4"
                     autoPlay={true}
                     muted={false}
                     loop={true}
@@ -960,7 +960,7 @@ export default function TapFilterLanding() {
             style={{ maxWidth: 360, aspectRatio: "9 / 16" }}
           >
             <video
-              src="/lp/tap-filter/IMG_3413.MOV"
+              src="/lp/tap-filter/IMG_3413.mp4"
               autoPlay={true}
               muted={false}
               loop={true}
