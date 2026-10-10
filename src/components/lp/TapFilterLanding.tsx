@@ -253,8 +253,8 @@ function useReveal() {
   }, []);
 }
 
-const phone = "+8801708356800";
-const waHref = `https://wa.me/8801708356800?text=হ্যালো%20Griha%20Nova!%20আমি%20অ্যাডভান্সড%20ট্যাপ%20ফিল্টার%20সম্পর্কে%20বিস্তারিত%20জানতে%20চাই।`;
+const phone = "+8801860229546";
+const waHref = `https://wa.me/8801860229546?text=হ্যালো%20Griha%20Nova!%20আমি%20অ্যাডভান্সড%20ট্যাপ%20ফিল্টার%20সম্পর্কে%20বিস্তারিত%20জানতে%20চাই।`;
 
 function BengaliNum(n: number | string) {
   const map: Record<string, string> = {
