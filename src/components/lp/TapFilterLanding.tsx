@@ -850,23 +850,72 @@ export default function TapFilterLanding() {
             }}
           />
         ))}
-        <div className="relative max-w-6xl mx-auto px-4 flex flex-col-reverse md:grid md:grid-cols-2 gap-8 md:gap-10 items-center">
+        <div className="relative max-w-5xl mx-auto px-4 flex flex-col items-center text-center gap-8 md:gap-10">
           <div>
             <span className="inline-flex items-center gap-2 bg-gradient-to-r from-amber-500 to-orange-400 text-white shadow-lg px-4 py-1.5 rounded-full text-[13px] font-bold tracking-wide">
               <Sparkles className="w-4 h-4" /> আল্ট্রা-প্রিমিয়াম কালেকশন
             </span>
-            <h1 className="mt-5 text-4xl md:text-6xl font-extrabold leading-tight drop-shadow-xl">
+            <h1 className="mt-5 text-4xl md:text-6xl font-extrabold leading-tight drop-shadow-xl mx-auto max-w-3xl">
               ১০০% বিশুদ্ধ পানির নিশ্চয়তায় <br className="hidden md:block" />
               <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-teal-200">
                 প্রিমিয়াম ট্যাপ ফিল্টার
               </span>
             </h1>
-            <p className="mt-5 text-lg md:text-xl text-cyan-50 font-medium leading-relaxed max-w-lg">
+            <p className="mt-5 text-lg md:text-xl text-cyan-50 font-medium leading-relaxed max-w-2xl mx-auto">
               ক্ষতিকর আয়রন, জীবাণু ও দুর্গন্ধ দূর করে আপনার পরিবারকে দিন
               সম্পূর্ণ নিরাপদ পানির গ্যারান্টি। পানি ফোটানোর ঝামেলা এবার ভুলে
               যান!
             </p>
-            <div className="mt-8 grid grid-cols-3 gap-3 md:gap-4">
+          </div>
+
+          <div className="relative w-full max-w-4xl mx-auto">
+            <div
+              className="absolute -inset-4 rounded-3xl bg-white/10 blur-2xl"
+              aria-hidden
+            />
+            <div
+              className="relative w-full rounded-2xl overflow-hidden ring-1 ring-white/30 shadow-2xl bg-black"
+              style={{ aspectRatio: "16 / 9" }}
+            >
+              {!isHeroVideoPlaying ? (
+                <button
+                  onClick={() => setIsHeroVideoPlaying(true)}
+                  className="absolute inset-0 w-full h-full group outline-none flex items-center justify-center"
+                  aria-label="Play video"
+                >
+                  <img
+                    src="https://i.ytimg.com/vi/JdIvHLqJCQU/hqdefault.jpg"
+                    alt="Tap Filter Demo"
+                    className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  />
+                  <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex items-center justify-center">
+                    <div className="w-20 h-20 md:w-24 md:h-24 bg-red-600 rounded-full flex items-center justify-center shadow-lg shadow-red-600/50 group-hover:scale-110 transition-transform">
+                      <Play className="w-10 h-10 md:w-12 md:h-12 text-white fill-white ml-2" />
+                    </div>
+                  </div>
+                </button>
+              ) : (
+                <iframe
+                  src="https://www.youtube.com/embed/JdIvHLqJCQU?autoplay=1&mute=0&loop=1&playlist=JdIvHLqJCQU"
+                  title="Tap Filter Demo Video"
+                  frameBorder="0"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  allowFullScreen
+                  className="absolute inset-0 w-full h-full"
+                />
+              )}
+            </div>
+          </div>
+
+          <div className="w-full flex flex-col items-center">
+            <button
+              type="button"
+              onClick={() => scrollToForm()}
+              className="tf-cta tf-pulse inline-flex items-center gap-2 px-8 py-4 rounded-full font-bold text-xl w-full justify-center md:w-auto shadow-xl"
+            >
+              <Flame className="w-6 h-6" /> এখনই অর্ডার করুন
+            </button>
+            <div className="mt-8 grid grid-cols-3 gap-3 md:gap-4 max-w-lg mx-auto w-full">
               {trustItems.map((t) => (
                 <div
                   key={t.label}
@@ -878,54 +927,6 @@ export default function TapFilterLanding() {
                   </div>
                 </div>
               ))}
-            </div>
-            <button
-              type="button"
-              onClick={() => scrollToForm()}
-              className="tf-cta tf-pulse mt-7 inline-flex items-center gap-2 px-6 py-3 rounded-full font-bold text-base w-full justify-center md:w-auto"
-            >
-              <Flame className="w-5 h-5" /> এখনই অর্ডার করুন
-            </button>
-          </div>
-
-          <div className="relative flex items-center justify-center w-full mt-4 md:mt-0">
-            <div className="relative w-full max-w-[280px] md:max-w-xs">
-              <div
-                className="absolute -inset-4 rounded-3xl bg-white/10 blur-2xl"
-                aria-hidden
-              />
-              <div
-                className="relative w-full rounded-2xl overflow-hidden ring-1 ring-white/30 shadow-2xl bg-black"
-                style={{ aspectRatio: "9 / 16" }}
-              >
-                {!isHeroVideoPlaying ? (
-                  <button
-                    onClick={() => setIsHeroVideoPlaying(true)}
-                    className="absolute inset-0 w-full h-full group outline-none"
-                    aria-label="Play video"
-                  >
-                    <img
-                      src="https://i.ytimg.com/vi/3tqlGvIhxpA/hqdefault.jpg"
-                      alt="Tap Filter Demo"
-                      className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
-                    />
-                    <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-                      <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg shadow-red-600/50 group-hover:scale-110 transition-transform">
-                        <Play className="w-8 h-8 text-white fill-white ml-1" />
-                      </div>
-                    </div>
-                  </button>
-                ) : (
-                  <iframe
-                    src="https://www.youtube.com/embed/JdIvHLqJCQU?autoplay=1&mute=0&loop=1&playlist=JdIvHLqJCQU"
-                    title="Tap Filter Demo Video"
-                    frameBorder="0"
-                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                    allowFullScreen
-                    className="absolute inset-0 w-full h-full"
-                  />
-                )}
-              </div>
             </div>
           </div>
         </div>
