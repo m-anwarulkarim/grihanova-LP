@@ -44,10 +44,16 @@ export const POST: APIRoute = async ({ request }) => {
     const saleecomUrl =
       "https://api-client.saleecom.com/api/order/add-order-by-anonymous?shop=6a65db6332bce96d47df0fea";
 
+    let clientIp = request.headers.get("x-forwarded-for") || request.headers.get("cf-connecting-ip") || "";
+    if (clientIp.includes(",")) clientIp = clientIp.split(",")[0].trim();
+    const userAgent = request.headers.get("user-agent") || "";
+
     const response = await fetch(saleecomUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        "X-Forwarded-For": clientIp,
+        "User-Agent": userAgent,
       },
       body: JSON.stringify(saleecomPayload),
     });
