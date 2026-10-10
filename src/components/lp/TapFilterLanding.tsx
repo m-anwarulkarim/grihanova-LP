@@ -1758,6 +1758,93 @@ export default function TapFilterLanding() {
           </span>
         </button>
       </div>
+
+      <style dangerouslySetInnerHTML={{__html: `
+        .floating-actions-container {
+          position: fixed;
+          bottom: 24px;
+          right: 24px;
+          z-index: 999;
+          display: flex;
+          align-items: center;
+          gap: 12px;
+        }
+        .floating-wa-btn {
+          width: 56px;
+          height: 56px;
+          background: linear-gradient(135deg, #25d366 0%, #128c7e 100%);
+          color: #ffffff;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-size: 30px;
+          box-shadow: 0 8px 24px rgba(37, 211, 102, 0.45);
+          position: relative;
+          transition: transform 0.3s ease;
+          text-decoration: none;
+        }
+        .floating-wa-btn:hover {
+          transform: scale(1.12);
+          color: #ffffff;
+        }
+        .wa-pulse-ring {
+          position: absolute;
+          top: -6px; left: -6px; right: -6px; bottom: -6px;
+          border: 2px solid #25d366;
+          border-radius: 50%;
+          animation: pulseWave 2s infinite ease-out;
+          pointer-events: none;
+        }
+        @keyframes pulseWave {
+          0% { transform: scale(0.9); opacity: 1; }
+          100% { transform: scale(1.55); opacity: 0; }
+        }
+        .floating-order-btn {
+          background: linear-gradient(135deg, #f59e0b 0%, #d97706 100%);
+          color: #ffffff;
+          padding: 13px 24px;
+          border-radius: 50px;
+          font-weight: 800;
+          font-size: 15.5px;
+          display: inline-flex;
+          align-items: center;
+          gap: 9px;
+          box-shadow: 0 8px 25px rgba(217, 119, 6, 0.45);
+          text-decoration: none;
+          animation: bounceSubtle 2.5s infinite ease-in-out;
+          transition: all 0.3s ease;
+          border: 1px solid rgba(255, 255, 255, 0.3);
+        }
+        .floating-order-btn:hover {
+          transform: translateY(-3px) scale(1.03);
+          box-shadow: 0 12px 30px rgba(217, 119, 6, 0.6);
+          color: #ffffff;
+        }
+        @keyframes bounceSubtle {
+          0%, 100% { transform: translateY(0); }
+          50% { transform: translateY(-5px); }
+        }
+        @media (max-width: 576px) {
+          .floating-actions-container {
+            bottom: 14px;
+            right: 14px;
+            left: 14px;
+            gap: 10px;
+          }
+          .floating-wa-btn {
+            width: 48px;
+            height: 48px;
+            font-size: 26px;
+          }
+          .floating-order-btn {
+            flex: 1;
+            justify-content: center;
+            padding: 12px 16px;
+            font-size: 14.5px;
+          }
+        }
+      `}} />
     </div>
   );
 }
