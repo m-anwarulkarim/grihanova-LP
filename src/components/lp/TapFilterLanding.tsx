@@ -868,14 +868,14 @@ export default function TapFilterLanding() {
             </p>
           </div>
 
-          <div className="relative w-full max-w-4xl mx-auto">
+          <div className="relative w-full max-w-[280px] md:max-w-xs mx-auto">
             <div
               className="absolute -inset-4 rounded-3xl bg-white/10 blur-2xl"
               aria-hidden
             />
             <div
               className="relative w-full rounded-2xl overflow-hidden ring-1 ring-white/30 shadow-2xl bg-black"
-              style={{ aspectRatio: "16 / 9" }}
+              style={{ aspectRatio: "9 / 16" }}
             >
               {!isHeroVideoPlaying ? (
                 <button
@@ -884,13 +884,13 @@ export default function TapFilterLanding() {
                   aria-label="Play video"
                 >
                   <img
-                    src="https://i.ytimg.com/vi/JdIvHLqJCQU/hqdefault.jpg"
+                    src="https://i.ytimg.com/vi/3tqlGvIhxpA/hqdefault.jpg"
                     alt="Tap Filter Demo"
                     className="absolute inset-0 w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-black/20 group-hover:bg-black/10 transition-colors flex items-center justify-center">
-                    <div className="w-20 h-20 md:w-24 md:h-24 bg-red-600 rounded-full flex items-center justify-center shadow-lg shadow-red-600/50 group-hover:scale-110 transition-transform">
-                      <Play className="w-10 h-10 md:w-12 md:h-12 text-white fill-white ml-2" />
+                    <div className="w-16 h-16 bg-red-600 rounded-full flex items-center justify-center shadow-lg shadow-red-600/50 group-hover:scale-110 transition-transform">
+                      <Play className="w-8 h-8 text-white fill-white ml-1" />
                     </div>
                   </div>
                 </button>
